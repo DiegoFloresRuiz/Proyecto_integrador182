@@ -11,7 +11,7 @@
 <body>
     <div class="menu">
         <button type="button"> Registrar Usuario </button>
-        <button type="button">Buscar Usuario</button>
+        <a href="{{ url_for('BuscarUsuario') }}"><button type="button">Buscar Usuario</button></a>
         <button type="button"> Modificar Usuario </button>
         <button type="button"> Eliminar Usuario </button>
         <button type="button"> Registro Cliente  </button>
@@ -26,7 +26,7 @@
     </div>
 <div class="Formulario">
     <h1> Registro de Nuevo Cliente </h1>   
-    <form method="post">
+    <form action="/ingresar" method="post">
         <div class="username">
             <input type="text" name="nombre">
             <label>Nombre</label>

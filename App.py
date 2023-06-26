@@ -54,6 +54,10 @@ def ingresar():
     # Si la solicitud es GET, renderiza la plantilla index.html
     return render_template('index.html')
 
+@app.route('/BuscarUsuario.html')
+def BuscarUsuario():
+    
+    return render_template('BuscarUsuario.html')
 
 
 
