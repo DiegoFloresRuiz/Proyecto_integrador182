@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notaria</title>
+    <title>Document</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
 </head>
 <body>
@@ -21,19 +21,6 @@
         <a href="{{ url_for('BuscarCliente') }}"><button type="button"> Buscar Cliente </button></a>
 
     </div>
-    <div class="Formulario">
-        <h1> Borrar Factura  </h1>   
-        <form action="/EditarTramite" method="post">
-            <div class="username">
-                <input type="text" name="BorrarFacrura">
-                <label>ID Factura</label>
-            </div>
-            <div class="use">
-                <button type="submit"> BOrrar </button>
-                <button type="reset"> Cancelar </button>
-            </div>
-        </form>
-    
-    </div>
+    </h1>
 </body>
 </html>

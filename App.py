@@ -88,9 +88,18 @@ def EditarTramite():
 def EliminarFactura():
     return render_template('EliminarFactura.html')
 
+
 @app.route('/IngresoPago.html')
 def IngresoPago():
     return render_template('IngresoPago.html')
+
+@app.route('/BuscarTramite.html')
+def BuscarTramite():
+    return render_template('BuscarTramite.html')
+
+@app.route('/BuscarCliente.html')
+def BuscarCliente():
+    return render_template('BuscarCliente.html')
 
 if __name__=='__main__':
     app.run(port= 9000, debug=True) #debug=true activaactualizacion 
