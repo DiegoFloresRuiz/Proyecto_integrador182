@@ -12,7 +12,7 @@ app.secret_key = 'mysecretkey'
 mysql = MySQL(app)
 
 
-@app.route('/Registro_Nuevo_Usuario')
+@app.route('/Registro_Nuevo_Usuario.html')
 def Registro_Nuevo_Usuario():
     return render_template('Registro_Nuevo_Usuario.html')
 
@@ -69,6 +69,7 @@ def Modificar_Usuario():
 @app.route('/Eliminar_Usuario.html')
 def Eliminar_Usuario():
     return render_template('Eliminar_Usuario.html')
+
 
 
 if __name__=='__main__':
