@@ -56,9 +56,19 @@ def ingresar():
 
 @app.route('/BuscarUsuario.html')
 def BuscarUsuario():
-    
     return render_template('BuscarUsuario.html')
 
+@app.route('/Registro_Nuevo_Usuario.html')
+def Registrar_Nuevo_Usuario():
+    return render_template('Registro_Nuevo_Usuario.html')
+
+@app.route('/Modificar_Usuario.html')
+def Modificar_Usuario():
+    return render_template('Modificar_Usuario.html')
+
+@app.route('/Eliminar_Usuario.html')
+def Eliminar_Usuario():
+    return render_template('Eliminar_Usuario.html')
 
 
 if __name__=='__main__':

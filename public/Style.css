@@ -11,7 +11,7 @@ body {
 position: absolute;
 top: 50%;
 left: 50%;
-transform: translate(-50%, -50%);
+transform: translate(-50%, -45%);
 width: 50%;
 background: white;
 border-radius: 20px;
@@ -101,7 +101,7 @@ input[type="submit"]{
 }
 
 button{
-    width: 40%;
+    width: 30%;
     height: 50px;
     border: 1px solid;
     background: #130000;
@@ -128,7 +128,3 @@ button{
     margin: 10px 0;
 }
 
-.use{
-align-items: center;
-align-content: center;
-}
