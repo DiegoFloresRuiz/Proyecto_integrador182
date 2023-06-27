@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notaria</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
-
-
 </head>
 <body>
     <div class="menu">
@@ -24,36 +22,32 @@
         <button type="button"> Buscar Cliente </button>
 
     </div>
-<div class="Formulario">
-    <h1> Registro de Nuevo Cliente </h1>   
-    <form action="/Registrar_Nuevo_Usuario" method="post">
-        <div class="username">
-            <input type="text" name="nombre">
-            <label>Nombre</label>
-        </div>
-        <div class="username">
-            <input type="text" name="ApellidoP">
-            <label>pellido Paterno</label>
-        </div>
-        <div class="username">
-            <input type="text" name="ApellidoM">
-            <label>Apellido Materno</label>
-        </div>
-
-        <div class="username">
-            <input type="text" name="Cargo">
-            <label>Cargo</label>
-        </div>
-        <div class="username">
-            <input type="password" name="password">
-            <label>contraseña</label>
-        </div>
-        <div class="use">
-            <button type="submit"> Guardar</button>
-            <button type="reset"> Cancelar </button>
-        </div>
-    </form>
-
-</div>
+    <div class="Formulario">
+        <h1> Iniciar Tramite  </h1>   
+        <form action="/EditarTramite" method="post">
+            <div class="username">
+                <input type="text" name="NumeroExpediente ">
+                <label>Numero de expediente</label>
+            </div>
+            <div class="username">
+                <input type="text" name="NumeroToma">
+                <label>Numero de Toma</label>
+            </div>
+            <div class="username">
+                <input type="text" name="Operacion">
+                <label>Operacion</label>
+            </div>
+    
+            <div class="username">
+                <input type="text" name="Cliente">
+                <label>Cliente</label>
+            </div>
+            <div class="use">
+                <button type="submit"> Guardar</button>
+                <button type="reset"> Cancelar </button>
+            </div>
+        </form>
+    
+    </div>
 </body>
 </html>

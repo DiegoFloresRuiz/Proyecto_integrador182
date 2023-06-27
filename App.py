@@ -71,6 +71,21 @@ def Eliminar_Usuario():
     return render_template('Eliminar_Usuario.html')
 
 
+@app.route('/RegistrarCliente.html')
+def RegistrarCliente():
+    return render_template('RegistrarCliente.html')
+
+@app.route('/ModificarCliente.html')
+def ModificarCliente():
+    return render_template('ModificarCliente.html')
+
+@app.route('/EditarTramite.html')
+def EditarTramite():
+    return render_template('EditarTramite.html')
+
+@app.route('/IngresoPago.html')
+def IngresoPago():
+    return render_template('IngresoPago.html')
 
 if __name__=='__main__':
     app.run(port= 9000, debug=True) #debug=true activaactualizacion 
