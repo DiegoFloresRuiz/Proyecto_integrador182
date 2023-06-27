@@ -83,6 +83,11 @@ def ModificarCliente():
 def EditarTramite():
     return render_template('EditarTramite.html')
 
+
+@app.route('/EliminarFactura.html')
+def EliminarFactura():
+    return render_template('EliminarFactura.html')
+
 @app.route('/IngresoPago.html')
 def IngresoPago():
     return render_template('IngresoPago.html')
