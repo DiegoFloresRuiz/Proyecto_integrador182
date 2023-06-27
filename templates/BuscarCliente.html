@@ -21,6 +21,23 @@
         <a href="{{ url_for('BuscarCliente') }}"><button type="button"> Buscar Cliente </button></a>
 
     </div>
-    </h1>
+    <div class="Formulario">
+        <h1> Buscar Usuario </h1>   
+        <form action="/BuscarUsuario" method="post">
+            <div class="use">
+                <button type="submit"> Buscar por RFC del Cliente</button>
+                <button type="submit"> Buscar Nombre Completo </button>
+            </div>
+            <div class="username">
+                <input type="text" name="ApellidoM">
+                <label>Busca por Palabara Clave</label>
+            </div>
+            <div class="use">
+                <button type="submit"> Buscar</button>
+                <button type="reset"> Canselar </button>
+            </div>
+        </form>
+    
+    </div>
 </body>
 </html>
