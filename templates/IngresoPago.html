@@ -16,13 +16,12 @@
         <a href="{{ url_for('ModificarCliente') }}"><button type="button"> Editar un Cliente  </button></a>
         <a href="{{ url_for('EditarTramite') }}"><button type="button"> Inicio de Tramite </button></a>
         <a href="{{ url_for('IngresoPago') }}"><button type="button"> Ingreso de Pago </button></a>
-        <a href="{{ url_for('EliminarFactura') }}"><button type="button"> Eliminar Factura </button></a>
         <a href="{{ url_for('BuscarTramite') }}"><button type="button"> Buscar Tramite  </button></a>
         <a href="{{ url_for('BuscarCliente') }}"><button type="button"> Buscar Cliente </button></a>
 
     </div>
     <div class="Formulario">
-        <h1> Iniciar Tramite  </h1>   
+        <h1> Ingreso de Pago  </h1>   
         <form action="/EditarTramite" method="post">
             <div class="username">
                 <input type="text" name="TipoPago">
