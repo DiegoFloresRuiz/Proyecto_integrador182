@@ -5,7 +5,7 @@ app = Flask(__name__, static_folder='public', template_folder='templates')
 app.config['MYSQL_HOST'] = "localhost"
 app.config['MYSQL_USER'] = "root"
 app.config['MYSQL_PASSWORD'] = ""
-app.config['MYSQL_DB'] = "Notaria--"
+app.config['MYSQL_DB'] = "pi_flask"
 
 app.secret_key = 'mysecretkey'
 
@@ -100,6 +100,34 @@ def BuscarTramite():
 @app.route('/BuscarCliente.html')
 def BuscarCliente():
     return render_template('BuscarCliente.html')
+
+@app.route('/Guargar', methods=['POST'])
+def Guardar():
+    if request.method == 'POST':
+        Vnombre = request.form['nombre']
+        Vap = request.form['ApellidoP']
+        Vam = request.form['ApellidoM']
+        Vcargo = request.form['Cargo']
+        Vcontra = request.form['password']
+        CS = mysql.connection.cursor()
+        CS.execute('insert into registro_usuario(nombre,apellido_paterno,apellido_materno,cargo,contrasena) values (%s,%s,%s,%s,%s)',(Vnombre,Vap,Vam,Vcargo,Vcontra))
+        mysql.connection.commit()
+    flash('Usuario Agregado Correctamente')
+    return redirect(url_for('Registrar_Nuevo_Usuario'))
+
+@app.route('/buscarusuario/<id>', methods = ['POST'])
+def buscarusuario(id):
+    if request.method == 'POST':
+        Vid = request.form['id_usuario']
+        Vnombre = request.form['NombreBU']
+        Vap = request.form['ApellidoP']
+        Vam = request.form['ApellidoM']
+
+
+        curBuscar = mysql.connection.cursor()
+        curBuscar.execute('update registro_usuario set nombre = %s, apellido_paterno = %s, apellido_materno = %s where id = %s',(Vnombre, Vap, Vam, id))
+        
+
 
 if __name__=='__main__':
     app.run(port= 9000, debug=True) #debug=true activaactualizacion 
