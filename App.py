@@ -115,17 +115,28 @@ def Guardar():
     flash('Usuario Agregado Correctamente')
     return redirect(url_for('Registrar_Nuevo_Usuario'))
 
-@app.route('/buscarusuario/<id>', methods = ['POST'])
-def buscarusuario(id):
+@app.route('/buscarusuario', methods=['POST'])
+def buscar_usuario():
     if request.method == 'POST':
-        Vid = request.form['id_usuario']
-        Vnombre = request.form['NombreBU']
-        Vap = request.form['ApellidoP']
-        Vam = request.form['ApellidoM']
+        id_usuario = request.form['id_usuario']
+
+        cursor = mysql.connection.cursor()
+        cursor.execute('SELECT * FROM registro_usuario WHERE id = %s', (id_usuario,))
+        usuario = cursor.fetchone()
+
+        if usuario:
+            nombre = usuario[1]
+            apellido_paterno = usuario[2]
+            apellido_materno = usuario[3]
+
+            flash('Usuario encontrado')
+            return render_template('BuscarUsuario.html', nombre=nombre, apellido_paterno=apellido_paterno, apellido_materno=apellido_materno)
+        else:
+            flash('Usuario no encontrado')
+
+    return render_template('BuscarUsuario.html')
 
 
-        curBuscar = mysql.connection.cursor()
-        curBuscar.execute('update registro_usuario set nombre = %s, apellido_paterno = %s, apellido_materno = %s where id = %s',(Vnombre, Vap, Vam, id))
         
 
 
