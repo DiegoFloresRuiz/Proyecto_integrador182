@@ -136,6 +136,41 @@ def buscar_usuario():
 
     return render_template('BuscarUsuario.html')
 
+@app.route('/Modificar_Usuario', methods=['POST'])
+def modificar_usuario():
+    if request.method == 'POST':
+        id_usuario = request.form['id_usuario']
+
+        cursor = mysql.connection.cursor()
+        cursor.execute('SELECT * FROM registro_usuario WHERE id = %s', (id_usuario,))
+        usuario = cursor.fetchone()
+
+        if usuario:
+            nombre = usuario[1]
+            apellido_paterno = usuario[2]
+            apellido_materno = usuario[3]
+            cargo = usuario[4]
+            contraseña = usuario[5]
+
+            flash('Usuario encontrado')
+            return render_template('Modificar_Usuario.html', id_usuario=id_usuario, nombre=nombre, apellido_paterno=apellido_paterno, apellido_materno=apellido_materno, cargo=cargo, contraseña=contraseña)
+        else:
+            flash('Usuario no encontrado')
+
+    return render_template('Modificar_Usuario.html')
+
+@app.route('/Eliminar_Usuario', methods=['POST'])
+def eliminar_usuario():
+    if request.method == 'POST':
+        vid_usuario = request.form['id_usuario']
+        CS = mysql.connection.cursor()
+        CS.execute('DELETE FROM registro_usuario WHERE id = %s', (vid_usuario,))
+        mysql.connection.commit()
+    flash('Usuario eliminado correctamente')
+    return redirect(url_for('Eliminar_Usuario'))
+
+
+
 
         
 
