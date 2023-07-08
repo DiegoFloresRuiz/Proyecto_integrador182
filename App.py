@@ -170,8 +170,41 @@ def eliminar_usuario():
     return redirect(url_for('Eliminar_Usuario'))
 
 
+@app.route('/RegistrarNCliente', methods=['POST'])
+def RegistrarNCliente():
+    if request.method == 'POST':
+        Vnombre = request.form['NombreCli']
+        Vap = request.form['ApellidoPCLI']
+        Vam = request.form['ApellidoMCLI']
+        Vrfc = request.form['RFCCLI']
+        Vcalle = request.form['CalleCLI']
+        Vni = request.form['NICLI']
+        Vne = request.form['NECLI']
+        Vcolonia = request.form['coloniaCLI']
+        Vcp = request.form['CPCLI']
+        Vdel = request.form['DELEGACIONCLI']
+        Vciudad = request.form['CiudadCLI']
+        Vestado = request.form['EstadoCLI']
+        Vtelefono = request.form['TelefonoCLI']
+        Vcorreo = request.form['correCLI']
+        GC = mysql.connection.cursor()
+        GC.execute('insert into registro_cliente(nombre, apellido_paterno, apellido_materno, RFC, calle, num_int, num_ext, colonia, codigo_postal, delegacion, ciudad, estado, telefono, correo) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)',(Vnombre,Vap,Vam,Vrfc,Vcalle,Vni,Vne,Vcolonia,Vcp,Vdel,Vciudad,Vestado,Vtelefono,Vcorreo))
+        mysql.connection.commit()
+    flash('Usuario Agregado Correctamente')
+    return redirect(url_for('RegistrarCliente'))
 
-
+@app.route('/Inciar_Tramite', methods=['POST'])
+def Inciar_Tramite():
+    if request.method == 'POST':
+        VnumE = request.form['NumeroExpediente']
+        VnumT = request.form['NumeroTomo']
+        Vop = request.form['Operacion']
+        Vcli = request.form['Cliente']
+        IT = mysql.connection.cursor()
+        IT.execute('insert into inicio_tramite(num_expediente, num_tomo, operacion, cliente) values (%s,%s,%s,%s)',(VnumE,VnumT,Vop,Vcli))
+        mysql.connection.commit()
+    flash('Usuario Agregado Correctamente')
+    return redirect(url_for('EditarTramite'))
         
 
 
