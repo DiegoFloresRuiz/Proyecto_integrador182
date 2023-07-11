@@ -11,6 +11,10 @@ app.secret_key = 'mysecretkey'
 
 mysql = MySQL(app)
 
+@app.route('/HolaU')
+def HolaU():
+    return render_template('HolaU.html')
+
 
 @app.route('/Registro_Nuevo_Usuario.html')
 def Registro_Nuevo_Usuario():
@@ -43,7 +47,7 @@ def ingresar():
         elif Vusuario == 'IvanManzoRuiz':
             if Vusuario in usu and usu[Vusuario] == Vpassword:
                 session['nombre'] = Vusuario
-                return redirect(url_for('Registro_Nuevo_Usuario'))
+                return redirect(url_for('HolaU'))
             else:
                 flash('Usuario o contraseña incorrectos')
                 return redirect(url_for('index'))
@@ -118,10 +122,10 @@ def Guardar():
 @app.route('/buscarusuario', methods=['POST'])
 def buscar_usuario():
     if request.method == 'POST':
-        id_usuario = request.form['id_usuario']
+        nombreUs = request.form['id_usuario']
 
         cursor = mysql.connection.cursor()
-        cursor.execute('SELECT * FROM registro_usuario WHERE id = %s', (id_usuario,))
+        cursor.execute('SELECT * FROM registro_usuario WHERE nombre = %s', (nombreUs,))
         usuario = cursor.fetchone()
 
         if usuario:
@@ -162,9 +166,11 @@ def modificar_usuario():
 @app.route('/Eliminar_Usuario', methods=['POST'])
 def eliminar_usuario():
     if request.method == 'POST':
-        vid_usuario = request.form['id_usuario']
+        vnombre = request.form['id_usuario']
+        vap = request.form['apellido_paterno']
+        Vma = request.form['apellido_mat']
         CS = mysql.connection.cursor()
-        CS.execute('DELETE FROM registro_usuario WHERE id = %s', (vid_usuario,))
+        CS.execute('DELETE FROM registro_usuario WHERE nombre = %s AND apellido_paterno = %s AND apellido_materno = %s', (vnombre,vap,Vma))
         mysql.connection.commit()
     flash('Usuario eliminado correctamente')
     return redirect(url_for('Eliminar_Usuario'))

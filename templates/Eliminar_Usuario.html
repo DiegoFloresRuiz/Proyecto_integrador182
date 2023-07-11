@@ -24,8 +24,16 @@
         <h1> Eliminar Usuario </h1>   
         <form action="/Eliminar_Usuario" method="post">
             <div class="username">
-                <input type="text" name="id_usuario">
-                <label>ID Usuario No puede ser modificada</label>
+                <input type="text" name="id_usuario" required>
+                <label>Nombre de Usuario</label>
+            </div>
+            <div class="username">
+                <input type="text" name="apellido_paterno" required>
+                <label>Apellido Parerno</label>
+            </div>
+            <div class="username">
+                <input type="text" name="apellido_mat" required>
+                <label>Apellido Materno</label>
             </div>
             
             <div class="use">

@@ -8,13 +8,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='Index.css') }}">
 </head>
 <body>
-    {%with mensajes= get_flashed_messages() %}
-        {%if mensajes%}
-            {%for msj in mensajes%}
-                <h1>{{ msj }}</h1>
-            {%endfor%}
-        {%endif%}
-    {%endwith%}
+
 
     <form action="/ingresar" method="POST"> 
         <div class="Formulario">

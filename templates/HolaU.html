@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notaria</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+    <title>Bienvenido</title>
 </head>
 <body>
     <div class="menu">
@@ -20,32 +20,9 @@
         <a href="{{ url_for('BuscarCliente') }}"><button type="button"> Buscar Cliente </button></a>
 
     </div>
-    <div class="Formulario">
-        <h1> Iniciar Tramite  </h1>   
-        <form action="/Inciar_Tramite" method="post">
-            <div class="username">
-                <input type="text" name="NumeroExpediente" required>
-                <label>Numero de expediente</label >
-            </div>
-            <div class="username">
-                <input type="text" name="NumeroTomo" required>
-                <label>Numero de Tomo</label>
-            </div>
-            <div class="username">
-                <input type="text" name="Operacion" required>
-                <label>Operacion</label>
-            </div>
-    
-            <div class="username">
-                <input type="text" name="Cliente" required>
-                <label>Cliente</label>
-            </div>
-            <div class="use">
-                <button type="submit"> Guardar</button>
-                <button type="reset"> Cancelar </button>
-            </div>
-        </form>
-    
-    </div>
+
+    <center>
+        <H1>Bienvenido Usuario</H1>
+    </center>
 </body>
 </html>
