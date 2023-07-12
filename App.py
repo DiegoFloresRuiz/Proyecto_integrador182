@@ -40,7 +40,7 @@ def ingresar():
         if Vusuario == 'DiegoFloresRuiz':
             if Vusuario in usu and usu[Vusuario] == Vpassword:
                 session['usuario'] = Vusuario
-                return redirect(url_for('Registro_Nuevo_Usuario'))
+                return redirect(url_for('HolaU'))
             else:
                 flash('Usuario o contraseña incorrectos')
                 return redirect(url_for('index'))
