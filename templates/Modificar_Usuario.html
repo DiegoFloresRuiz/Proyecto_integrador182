@@ -16,7 +16,6 @@
         <a href="{{ url_for('ModificarCliente') }}"><button type="button"> Editar un Cliente  </button></a>
         <a href="{{ url_for('EditarTramite') }}"><button type="button"> Inicio de Tramite </button></a>
         <a href="{{ url_for('IngresoPago') }}"><button type="button"> Ingreso de Pago </button></a>
-        <a href="{{ url_for('EliminarFactura') }}"><button type="button"> Eliminar Factura </button></a>
         <a href="{{ url_for('BuscarTramite') }}"><button type="button"> Buscar Tramite  </button></a>
         <a href="{{ url_for('BuscarCliente') }}"><button type="button"> Buscar Cliente </button></a>
 
@@ -25,28 +24,28 @@
         <h1> Modificar Usuario </h1>   
         <form action="/Modificar_Usuario" method="post">
             <div class="username">
-                <input type="text" name="id_usuario">
+                <input type="text" name="id_usuario" required>
                 <label>ID Usuario No puede ser modificada</label>
             </div>
             <h1>Ingresa los datos a modificar</h1>
             <div class="username">
-                <input type="text" name="NombreMU">
+                <input type="text" name="NombreMU" required>
                 <label>Nombre(s)</label>
             </div>
             <div class="username">
-                <input type="text" name="ApellidoPMU">
+                <input type="text" name="ApellidoPMU" required>
                 <label>Apellido Paterno</label>
             </div>
             <div class="username">
-                <input type="text" name="ApellidoMMU">
+                <input type="text" name="ApellidoMMU" required>
                 <label>Apellido Materno</label>
             </div>
             <div class="username">
-                <input type="text" name="CargoMU">
+                <input type="text" name="CargoMU" required>
                 <label>Cargo</label>
             </div>
             <div class="username">
-                <input type="password" name="contraseñaMU">
+                <input type="password" name="contraseñaMU" required>
                 <label>contraseña</label>
             </div>
             <div class="use">
