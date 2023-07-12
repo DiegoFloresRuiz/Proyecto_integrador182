@@ -211,6 +211,17 @@ def Inciar_Tramite():
         mysql.connection.commit()
     flash('Usuario Agregado Correctamente')
     return redirect(url_for('EditarTramite'))
+
+@app.route('/Ingresar_pago', methods=['POST'])
+def Ingresar_pago():
+    if request.method == 'POST':
+        VCant = request.form['CantidadPa']
+        VTP = request.form['TipoPago']
+        VFecha = request.form['FechaP']
+        IP = mysql.connection.cursor()
+        IP.execute('insert into IngresoPago(cantidad, tipo_pago, fecha) values (%s,%s,%s)',(VTP,VCant,VFecha))
+        mysql.connection.commit()
+    return redirect(url_for('Ingresar_pago'))
         
 
 
