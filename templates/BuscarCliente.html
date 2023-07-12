@@ -20,6 +20,13 @@
         <a href="{{ url_for('BuscarCliente') }}"><button type="button"> Buscar Cliente </button></a>
 
     </div>
+    {%with mensajes=get_flashed_messages()%}
+      {%if mensajes%}
+        {%for msj in mensajes%}
+         <h3>{{msj}}</h3>
+        {%endfor%}
+      {%endif%}
+    {%endwith%}
     <div class="Formulario">
         <h1> Buscar Cliente </h1>   
         <form action="/BuscarUsuario" method="post">
@@ -33,7 +40,7 @@
             </div>
             <div class="use">
                 <button type="submit"> Buscar</button>
-                <button type="reset"> Canselar </button>
+                <button type="reset"> Cancelar </button>
             </div>
         </form>
     
