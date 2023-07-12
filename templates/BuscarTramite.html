@@ -22,20 +22,34 @@
     </div>
     <div class="Formulario">
         <h1> Buscar Tramite </h1>   
-        <form action="/BuscarUsuario" method="post">
-            <div class="use">
-                <button type="submit"> Buscar por Numero Expediente</button>
-                <button type="submit"> Buscar Por ID Tramite </button>
-                <button type="submit"> Buscar Por Nombre tramite </button>
-            </div>
+        <form action="/buscartramite" method="post">
             <div class="username">
-                <input type="text" name="ApellidoM" required>
-                <label>Busca por Palabara Clave</label>
+                <input type="text" name="NumeroExpediente" required>
+                <label>Busca por Numero de expediente</label>
             </div>
             <div class="use">
                 <button type="submit"> Buscar</button>
-                <button type="reset"> Canselar </button>
+                <button type="reset"> Cancelar </button>
             </div>
+                <div class="username">
+                    <input type="text" name="NumeroExpediente" value="{{ num_expediente }}">
+                    <label>Numero de expediente</label >
+                </div>
+                <div class="username">
+                    <input type="text" name="NumeroTomo" value="{{ num_tomo }}">
+                    <label>Numero de Tomo</label>
+                </div>
+                <div class="username">
+                    <input type="text" name="Operacion" value="{{ operacion }}">
+                    <label>Operacion</label>
+                </div>
+        
+                <div class="username">
+                    <input type="text" name="Cliente" value="{{ cliente }}">
+                    <label>Cliente</label>
+                </div>
+            
+
         </form>
     
     </div>
