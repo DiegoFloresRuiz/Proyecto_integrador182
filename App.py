@@ -225,6 +225,29 @@ def Ingresar_pago():
     return redirect(url_for('Ingresar_pago'))
         
 
+@app.route('/buscartramite', methods=['POST'])
+def buscar_tramite():
+    if request.method == 'POST':
+        num_expediente = request.form['NumeroExpediente']
+
+        cursor = mysql.connection.cursor()
+        cursor.execute('SELECT * FROM inicio_tramite WHERE num_expediente = %s', (num_expediente,))
+        tramite = cursor.fetchone()
+
+        if tramite:
+            num_expediente = tramite[1]
+            num_tomo = tramite[2]
+            operacion = tramite[3]
+            cliente = tramite[4]
+
+            flash('Trámite encontrado')
+            return render_template('BuscarTramite.html', num_expediente=num_expediente, num_tomo=num_tomo, operacion=operacion, cliente=cliente)
+        else:
+            flash('Trámite no encontrado')
+
+    return render_template('BuscarTramite.html')
+
+
 
 if __name__=='__main__':
     app.run(port= 9000, debug=True) #debug=true activaactualizacion 
