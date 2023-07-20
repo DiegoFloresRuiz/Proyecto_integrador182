@@ -101,5 +101,149 @@ def BuscarTramite():
 def BuscarCliente():
     return render_template('BuscarCliente.html')
 
+@app.route('/Guargar', methods=['POST'])
+def Guardar():
+    if request.method == 'POST':
+        Vnombre = request.form['nombre']
+        Vap = request.form['ApellidoP']
+        Vam = request.form['ApellidoM']
+        Vcargo = request.form['Cargo']
+        Vcontra = request.form['password']
+        CS = mysql.connection.cursor()
+        CS.execute('insert into registro_usuario(nombre,apellido_paterno,apellido_materno,cargo,contrasena) values (%s,%s,%s,%s,%s)',(Vnombre,Vap,Vam,Vcargo,Vcontra))
+        mysql.connection.commit()
+    flash('Usuario Agregado Correctamente')
+    return redirect(url_for('Registrar_Nuevo_Usuario'))
+
+@app.route('/buscarusuario', methods=['POST'])
+def buscar_usuario():
+    if request.method == 'POST':
+        nombreUs = request.form['id_usuario']
+
+        cursor = mysql.connection.cursor()
+        cursor.execute('SELECT * FROM registro_usuario WHERE nombre = %s', (nombreUs,))
+        usuario = cursor.fetchone()
+
+        if usuario:
+            nombre = usuario[1]
+            apellido_paterno = usuario[2]
+            apellido_materno = usuario[3]
+
+            flash('Usuario encontrado')
+            return render_template('BuscarUsuario.html', nombre=nombre, apellido_paterno=apellido_paterno, apellido_materno=apellido_materno)
+        else:
+            flash('Usuario no encontrado')
+
+    return render_template('BuscarUsuario.html')
+
+@app.route('/Modificar_Usuario', methods=['POST'])
+def modificar_usuario():
+    if request.method == 'POST':
+        id_usuario = request.form['id_usuario']
+
+        cursor = mysql.connection.cursor()
+        cursor.execute('SELECT * FROM registro_usuario WHERE id = %s', (id_usuario,))
+        usuario = cursor.fetchone()
+
+        if usuario:
+            nombre = usuario[1]
+            apellido_paterno = usuario[2]
+            apellido_materno = usuario[3]
+            cargo = usuario[4]
+            contraseña = usuario[5]
+
+            flash('Usuario modificado correctamente')
+            return render_template('Modificar_Usuario.html', id_usuario=id_usuario, nombre=nombre, apellido_paterno=apellido_paterno, apellido_materno=apellido_materno, cargo=cargo, contraseña=contraseña)
+        else:
+            flash('Usuario no encontrado')
+
+    return render_template('Modificar_Usuario.html')
+
+@app.route('/Eliminar_Usuario', methods=['POST'])
+def eliminar_usuario():
+    if request.method == 'POST':
+        vnombre = request.form['id_usuario']
+        vap = request.form['apellido_paterno']
+        Vma = request.form['apellido_mat']
+        CS = mysql.connection.cursor()
+        CS.execute('DELETE FROM registro_usuario WHERE nombre = %s AND apellido_paterno = %s AND apellido_materno = %s', (vnombre,vap,Vma))
+        mysql.connection.commit()
+    flash('Usuario eliminado correctamente')
+    return redirect(url_for('Eliminar_Usuario'))
+
+
+@app.route('/RegistrarNCliente', methods=['POST'])
+def RegistrarNCliente():
+    if request.method == 'POST':
+        Vnombre = request.form['NombreCli']
+        Vap = request.form['ApellidoPCLI']
+        Vam = request.form['ApellidoMCLI']
+        Vrfc = request.form['RFCCLI']
+        Vcalle = request.form['CalleCLI']
+        Vni = request.form['NICLI']
+        Vne = request.form['NECLI']
+        Vcolonia = request.form['coloniaCLI']
+        Vcp = request.form['CPCLI']
+        Vdel = request.form['DELEGACIONCLI']
+        Vciudad = request.form['CiudadCLI']
+        Vestado = request.form['EstadoCLI']
+        Vtelefono = request.form['TelefonoCLI']
+        Vcorreo = request.form['correCLI']
+        GC = mysql.connection.cursor()
+        GC.execute('insert into registro_cliente(nombre, apellido_paterno, apellido_materno, RFC, calle, num_int, num_ext, colonia, codigo_postal, delegacion, ciudad, estado, telefono, correo) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)',(Vnombre,Vap,Vam,Vrfc,Vcalle,Vni,Vne,Vcolonia,Vcp,Vdel,Vciudad,Vestado,Vtelefono,Vcorreo))
+        mysql.connection.commit()
+    flash('Usuario Agregado Correctamente')
+    return redirect(url_for('RegistrarCliente'))
+
+@app.route('/Inciar_Tramite', methods=['POST'])
+def Inciar_Tramite():
+    if request.method == 'POST':
+        VnumE = request.form['NumeroExpediente']
+        VnumT = request.form['NumeroTomo']
+        Vop = request.form['Operacion']
+        Vcli = request.form['Cliente']
+        IT = mysql.connection.cursor()
+        IT.execute('insert into inicio_tramite(num_expediente, num_tomo, operacion, cliente) values (%s,%s,%s,%s)',(VnumE,VnumT,Vop,Vcli))
+        mysql.connection.commit()
+    flash('Datos de nuevo trámite agregados correctamente a la base de datos')
+    return redirect(url_for('EditarTramite'))
+
+@app.route('/Ingresar_pago', methods=['POST'])
+def Ingresar_pago():
+    if request.method == 'POST':
+        VCant = request.form['CantidadPa']
+        VTP = request.form['TipoPago']
+        VFecha = request.form['FechaP']
+        IP = mysql.connection.cursor()
+        IP.execute('insert into IngresoPago(cantidad, tipo_pago, fecha) values (%s,%s,%s)',(VTP,VCant,VFecha))
+        mysql.connection.commit()
+    flash('Información del pago agregado correctamente a la base de datos')    
+    return redirect(url_for('Ingresar_pago'))
+        
+
+@app.route('/buscartramite', methods=['POST'])
+def buscar_tramite():
+    if request.method == 'POST':
+        num_expediente = request.form['NumeroExpediente']
+
+        cursor = mysql.connection.cursor()
+        cursor.execute('SELECT * FROM inicio_tramite WHERE num_expediente = %s', (num_expediente,))
+        tramite = cursor.fetchone()
+
+        if tramite:
+            num_expediente = tramite[1]
+            num_tomo = tramite[2]
+            operacion = tramite[3]
+            cliente = tramite[4]
+
+            flash('Trámite encontrado')
+            return render_template('BuscarTramite.html', num_expediente=num_expediente, num_tomo=num_tomo, operacion=operacion, cliente=cliente)
+        else:
+            flash('Trámite no encontrado')
+
+    return render_template('BuscarTramite.html')
+
+
+
 if __name__=='__main__':
     app.run(port= 9000, debug=True) #debug=true activaactualizacion 
