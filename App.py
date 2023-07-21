@@ -144,24 +144,28 @@ def buscar_usuario():
 def modificar_usuario():
     if request.method == 'POST':
         id_usuario = request.form['id_usuario']
+        nombre = request.form['nombre']
+        apellido_paterno = request.form['apellido_paterno']
+        apellido_materno = request.form['apellido_materno']
+        cargo = request.form['cargo']
+        contraseña = request.form['contrasena']
 
         cursor = mysql.connection.cursor()
-        cursor.execute('SELECT * FROM registro_usuario WHERE id = %s', (id_usuario,))
-        usuario = cursor.fetchone()
 
-        if usuario:
-            nombre = usuario[1]
-            apellido_paterno = usuario[2]
-            apellido_materno = usuario[3]
-            cargo = usuario[4]
-            contraseña = usuario[5]
+        cursor.execute('UPDATE registro_usuario SET nombre=%s, apellido_paterno=%s, apellido_materno=%s, cargo=%s, contrasena=%s WHERE id=%s',
+                       (nombre, apellido_paterno, apellido_materno, cargo, contraseña, id_usuario))
 
-            flash('Usuario modificado correctamente')
-            return render_template('Modificar_Usuario.html', id_usuario=id_usuario, nombre=nombre, apellido_paterno=apellido_paterno, apellido_materno=apellido_materno, cargo=cargo, contraseña=contraseña)
-        else:
-            flash('Usuario no encontrado')
+        # Guardar los cambios en la base de datos
+        mysql.connection.commit()
+
+        # Cerrar el cursor
+        cursor.close()
+
+        flash('Usuario modificado correctamente')
+        return render_template('Modificar_Usuario.html')
 
     return render_template('Modificar_Usuario.html')
+
 
 @app.route('/Eliminar_Usuario', methods=['POST'])
 def eliminar_usuario():
@@ -251,24 +255,37 @@ def buscar_tramite():
 @app.route('/buscarcliente', methods=['POST'])
 def buscarcliente():
     if request.method == 'POST':
-        num_expediente = request.form['NumeroExpediente']
+        nombre = request.form['Nombre']
+        apellido_paterno = request.form['ApellidoP']
+        apellido_materno = request.form['ApellidoM']
 
         cursor = mysql.connection.cursor()
-        cursor.execute('SELECT * FROM inicio_tramite WHERE num_expediente = %s', (num_expediente,))
+        cursor.execute('SELECT * FROM registro_cliente WHERE nombre = %s AND apellido_paterno = %s AND apellido_materno = %s', (nombre, apellido_paterno, apellido_materno))
         tramite = cursor.fetchone()
 
         if tramite:
-            num_expediente = tramite[1]
-            num_tomo = tramite[2]
-            operacion = tramite[3]
-            cliente = tramite[4]
+            nombre = tramite[1]
+            apellido_paterno = tramite[2]
+            apellido_materno = tramite[3]
+            RFC = tramite[4]
+            calle = tramite[5]
+            num_int = tramite[6]
+            num_ext = tramite[7]
+            colonia = tramite[8]
+            codigo_postal = tramite[9]
+            delegacion = tramite[10]
+            ciudad = tramite[11]
+            estado = tramite[12]
+            telefono = tramite[13]
+            correo = tramite[14]
 
-            flash('Trámite encontrado')
-            return render_template('BuscarTramite.html', num_expediente=num_expediente, num_tomo=num_tomo, operacion=operacion, cliente=cliente)
+
+            flash('Cliente encontrado')
+            return render_template('BuscarCliente.html', nombre=nombre, apellido_paterno=apellido_paterno, apellido_materno=apellido_materno, RFC=RFC, calle=calle, num_int=num_int, num_ext=num_ext, colonia=colonia, codigo_postal=codigo_postal, delegacion=delegacion, ciudad=ciudad, estado=estado, telefono=telefono, correo=correo)
         else:
             flash('Trámite no encontrado')
 
-    return render_template('BuscarTramite.html')
+    return render_template('BuscarCliente.html')
 
 
 if __name__=='__main__':
