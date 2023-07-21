@@ -156,7 +156,7 @@ def modificar_usuario():
             cargo = usuario[4]
             contraseña = usuario[5]
 
-            flash('Usuario encontrado')
+            flash('Usuario modificado correctamente')
             return render_template('Modificar_Usuario.html', id_usuario=id_usuario, nombre=nombre, apellido_paterno=apellido_paterno, apellido_materno=apellido_materno, cargo=cargo, contraseña=contraseña)
         else:
             flash('Usuario no encontrado')
@@ -209,7 +209,7 @@ def Inciar_Tramite():
         IT = mysql.connection.cursor()
         IT.execute('insert into inicio_tramite(num_expediente, num_tomo, operacion, cliente) values (%s,%s,%s,%s)',(VnumE,VnumT,Vop,Vcli))
         mysql.connection.commit()
-    flash('Usuario Agregado Correctamente')
+    flash('Datos de nuevo trámite agregados correctamente a la base de datos')
     return redirect(url_for('EditarTramite'))
 
 @app.route('/Ingresar_pago', methods=['POST'])
@@ -221,6 +221,7 @@ def Ingresar_pago():
         IP = mysql.connection.cursor()
         IP.execute('insert into IngresoPago(cantidad, tipo_pago, fecha) values (%s,%s,%s)',(VTP,VCant,VFecha))
         mysql.connection.commit()
+    flash('Información del pago agregado correctamente a la base de datos')    
     return redirect(url_for('Ingresar_pago'))
         
 
