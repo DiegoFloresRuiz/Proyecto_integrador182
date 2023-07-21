@@ -22,18 +22,78 @@
     </div>
     <div class="Formulario">
         <h1> Buscar Cliente </h1>   
-        <form action="/BuscarUsuario" method="post">
-            <div class="use">
-                <button type="submit"> Buscar por RFC del Cliente</button>
-                <button type="submit"> Buscar Nombre Completo </button>
+        <form action="/buscarcliente" method="post">
+            <div class="username">
+                <input type="text" name="ApellidoM" required>
+                <label>Nombre</label>
             </div>
             <div class="username">
                 <input type="text" name="ApellidoM" required>
-                <label>Busca por Palabara Clave</label>
+                <label>Apellido Paterno</label>
+            </div>
+            <div class="username">
+                <input type="text" name="ApellidoM" required>
+                <label>Apellido Materno</label>
             </div>
             <div class="use">
                 <button type="submit"> Buscar</button>
                 <button type="reset"> Cancelar </button>
+            </div>
+            <div class="username">
+                <input type="text" name="NombreCli" value="{{ nombre }}">
+                <label>Nombre Cliente</label>
+            </div>
+            <div class="username">
+                <input type="text" name="ApellidoPCLI" value="{{ apellido_paterno }}">
+                <label>Apellido Paterno</label>
+            </div>
+            <div class="username">
+                <input type="text" name="ApellidoMCLI" value="{{ apellido_materno }}">
+                <label>Apellido Materno</label>
+            </div>
+            <div class="username">
+                <input type="text" name="RFCCLI" value="{{ RFC }}">
+                <label>RFC</label>
+            </div>
+            <div class="username">
+                <input type="text" name="CalleCLI" value="{{ calle }}">
+                <label>Calle</label>
+            </div>
+            <div class="username">
+                <input type="text" name="NICLI" value="{{ num_int }}">
+                <label>Número Interno</label>
+            </div>
+            <div class="username">
+                <input type="text" name="NECLI" value=" {{ num_ext }}">
+                <label>Número Externo</label>
+            </div>
+            <div class="username">
+                <input type="text" name="coloniaCLI" value="{{ colonia }}">
+                <label> Colonia </label>
+            </div>
+            <div class="username">
+                <input type="text" name="CPCLI" value="{{ codigo_postal }}">
+                <label> CP </label>
+            </div>
+            <div class="username">
+                <input type="text" name="DELEGACIONCLI" value="{{ delegacion }}">
+                <label> Delegacion </label>
+            </div>
+            <div class="username">
+                <input type="text" name="CiudadCLI" value="{{ ciudad }}">
+                <label> Ciudad </label>
+            </div>
+            <div class="username">
+                <input type="text" name="EstadoCLI" value="{{ estado }}">
+                <label> Estado </label>
+            </div>
+            <div class="username">
+                <input type="text" name="TelefonoCLI" value="{{ telefono }}">
+                <label> Telefono </label>
+            </div>
+            <div class="username">
+                <input type="text" name="correCLI" value="{{ correo }}">
+                <label> Correo </label>
             </div>
         </form>
     
