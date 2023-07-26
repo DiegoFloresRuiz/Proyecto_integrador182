@@ -152,15 +152,10 @@ def modificar_usuario():
 
         cursor = mysql.connection.cursor()
 
-        cursor.execute('UPDATE registro_usuario SET nombre=%s, apellido_paterno=%s, apellido_materno=%s, cargo=%s, contrasena=%s WHERE id=%s',
-                       (nombre, apellido_paterno, apellido_materno, cargo, contraseña, id_usuario))
+        cursor.execute('UPDATE registro_usuario SET nombre=%s, apellido_paterno=%s, apellido_materno=%s, cargo=%s, contrasena=%s WHERE id=%s', (nombre, apellido_paterno, apellido_materno, cargo, contraseña, id_usuario))
 
         # Guardar los cambios en la base de datos
         mysql.connection.commit()
-
-        # Cerrar el cursor
-        cursor.close()
-
         flash('Usuario modificado correctamente')
         return render_template('Modificar_Usuario.html')
 
