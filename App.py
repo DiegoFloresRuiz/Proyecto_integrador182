@@ -143,7 +143,6 @@ def buscar_usuario():
 @app.route('/Modificar_Usuario', methods=['POST'])
 def modificar_usuario():
     if request.method == 'POST':
-        id_usuario = request.form['id_usuario']
         nombre = request.form['nombre']
         apellido_paterno = request.form['apellido_paterno']
         apellido_materno = request.form['apellido_materno']
@@ -152,7 +151,7 @@ def modificar_usuario():
 
         cursor = mysql.connection.cursor()
 
-        cursor.execute('UPDATE registro_usuario SET nombre=%s, apellido_paterno=%s, apellido_materno=%s, cargo=%s, contrasena=%s WHERE id=%s', (nombre, apellido_paterno, apellido_materno, cargo, contraseña, id_usuario))
+        cursor.execute('UPDATE registro_usuario SET nombre=%s, apellido_paterno=%s, apellido_materno=%s, cargo=%s, contrasena=%s WHERE nombre=%s AND apellido_paterno=%s AND apellido_materno=%s', (nombre, apellido_paterno, apellido_materno, cargo, contraseña, nombre,apellido_paterno,apellido_materno))
 
         # Guardar los cambios en la base de datos
         mysql.connection.commit()
