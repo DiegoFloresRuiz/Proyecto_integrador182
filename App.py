@@ -105,6 +105,10 @@ def BuscarTramite():
 def BuscarCliente():
     return render_template('BuscarCliente.html')
 
+@app.route('/Registros.html')
+def Registros():
+    return render_template('Registros.html')
+
 @app.route('/Guargar', methods=['POST'])
 def Guardar():
     if request.method == 'POST':
