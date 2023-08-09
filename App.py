@@ -318,7 +318,8 @@ def actualizar(id):
        mysql.connection.commit()
 
        flash('Datos del usuario actualizados en la base de datos correctamente')
-       return redirect(url_for('actualizar_usuario'))
+       return redirect(url_for('cUsuarios'))
+
    
 @app.route('/veliminar/<id>') 
 def eliminarUsuario(id):
@@ -337,7 +338,7 @@ def eliminar(id):
 
     
     flash('Usuario eliminado correctamente')
-    return redirect(url_for('HolaU'))
+    return redirect(url_for('cUsuarios'))
 
 
 @app.route('/vcarteraClientes') 

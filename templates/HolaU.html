@@ -21,13 +21,7 @@
         <a href="{{ url_for('ingresar') }}"><button type="button"> Cerrar sesión </button></a>
       </center>
     </div>
-    {%with mensajes=get_flashed_messages()%}
-    {% if mensajes%}
-      {%for msj in mensajes%}
-      <h3> {{msj}} </h3>
-      {%endfor%}
-    {%endif%}
-  {%endwith%}
+  
     <center>
       <br>
       <br>
@@ -36,7 +30,7 @@
        <br>
        <br>
        <br>
-       <img src="{{ url_for('static', filename='Warenot.png') }}"  width="400" height="500" alt="Mi imagen" >
+       <img src="{{ url_for('static', filename='Warenot.png') }}"  width="400" height="300" alt="Mi imagen" >
     </center>
 </body>
 </html>
