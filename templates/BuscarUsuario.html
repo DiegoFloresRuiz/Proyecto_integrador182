@@ -7,41 +7,38 @@
     <title>Notaria</title>
 </head>
 <body>
-    <div class="menu">
-        <a href="{{ url_for('Registrar_Nuevo_Usuario') }}"><button type="button"> Registrar Usuario </button></a>
-        <a href="{{ url_for('BuscarUsuario') }}"><button type="button">Buscar Usuario</button></a>
-        <a href="{{ url_for('Modificar_Usuario') }}"><button type="button"> Modificar Usuario </button></a>
-        <a href="{{ url_for('Eliminar_Usuario') }}"><button type="button"> Eliminar Usuario </button></a>
-        <a href="{{ url_for('RegistrarCliente') }}"><button type="button"> Registro Cliente  </button></a>
-        <a href="{{ url_for('ModificarCliente') }}"><button type="button"> Editar un Cliente  </button></a>
-        <a href="{{ url_for('EditarTramite') }}"><button type="button"> Inicio de Tramite </button></a>
-        <a href="{{ url_for('IngresoPago') }}"><button type="button"> Ingreso de Pago </button></a>
-        <a href="{{ url_for('BuscarTramite') }}"><button type="button"> Buscar Tramite  </button></a>
-        <a href="{{ url_for('BuscarCliente') }}"><button type="button"> Buscar Cliente </button></a>
-
-    </div>
+    
+    {%with mensajes=get_flashed_messages()%}
+      {%if mensajes%}
+        {%for msj in mensajes%}
+         <h3>{{msj}}</h3>
+        {%endfor%}
+      {%endif%}
+    {%endwith%}
     <div class="Formulario">
-        <h1> Buscar Usuario </h1>   
-        <form action="/BuscarUsuario" method="post">
+        <h1> Buscar Usuario </h1>  
+         <form action="/buscarusuario" method="post">
             <div class="username">
-                <input type="text" name="id_usuario">
-                <label>ID Usuario</label>
-            </div>
-            <div class="username">
-                <input type="text" name="NombreBU">
-                <label>Nombre(s)</label>
-            </div>
-            <div class="username">
-                <input type="text" name="ApellidoP">
-                <label>Apellido Paterno</label>
-            </div>
-            <div class="username">
-                <input type="text" name="ApellidoM">
-                <label>Apellido Materno</label>
+                <input type="text" name="id_usuario" placeholder="Nombre(s)" required>
+              
             </div>
             <div class="use">
                 <button type="submit"> Buscar</button>
-                <button type="reset"> Cancelar </button>
+            </div>
+            <div class="username">
+                <input type="text" name="NombreBU" placeholder="Nombres(s)" value="{{ nombre }}">
+            
+            </div>
+            <div class="username">
+                <input type="text" name="ApellidoP" placeholder="Apellido paterno" value="{{ apellido_paterno }}">
+                
+            </div>
+            <div class="username">
+                <input type="text" name="ApellidoM" placeholder="Apellido materno" value="{{ apellido_materno }}">
+               
+            </div>
+            <div class="use">
+                <a href=/HolaU><button type="button"> Cancelar </button></a>
             </div>
         </form>
     

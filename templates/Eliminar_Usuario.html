@@ -20,37 +20,37 @@
         <a href="{{ url_for('BuscarCliente') }}"><button type="button"> Buscar Cliente </button></a>
 
     </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    {%with mensajes=get_flashed_messages()%}
+      {%if mensajes%}
+        {%for msj in mensajes%}
+         <h3>{{msj}}</h3>
+        {%endfor%}
+      {%endif%}
+    {%endwith%}
     <div class="Formulario">
         <h1> Eliminar Usuario </h1>   
-        <form action="/Modificar_Usuario" method="post">
+        <form action="/Eliminar_Usuario" method="post">
             <div class="username">
-                <input type="text" name="id_usuario">
-                <label>ID Usuario No puede ser modificada</label>
-            </div>
-            <h1>Datos de Usuario a Eliminar</h1>
-            <div class="username">
-                <input type="text" name="NombreMU">
-                <label>Nombre(s)</label>
+                <input type="text" name="id_usuario" required>
+                <label>Nombre de Usuario</label>
             </div>
             <div class="username">
-                <input type="text" name="ApellidoPMU">
-                <label>Apellido Paterno</label>
+                <input type="text" name="apellido_paterno" required>
+                <label>Apellido Parerno</label>
             </div>
             <div class="username">
-                <input type="text" name="ApellidoMMU">
+                <input type="text" name="apellido_mat" required>
                 <label>Apellido Materno</label>
             </div>
-            <div class="username">
-                <input type="text" name="CargoMU">
-                <label>Cargo</label>
-            </div>
-            <div class="username">
-                <input type="password" name="contraseñaMU">
-                <label>contraseña</label>
-            </div>
+            
             <div class="use">
                 <button type="submit"> Eliminar Usuario </button>
-                <button type="reset"> Cancelar </button>
+                <a href=/HolaU><button type="button"> Cancelar </button></a>
             </div>
         </form>
     

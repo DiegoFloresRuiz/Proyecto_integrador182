@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+    <title>Página de inicio</title>
+</head>
+<body>
+    <div class="menu">
+      <center>
+        <a href="{{ url_for('Registrar_Nuevo_Usuario') }}"><button type="button"> Registrar Usuario </button></a>
+        <a href="{{ url_for('BuscarUsuario') }}"><button type="button">Buscar Usuario</button></a>
+        <a href="{{ url_for('cUsuarios') }}"><button type="button"> Usuarios registrados </button></a>
+       
+        
+        
+
+        
+      
+        <a href="{{ url_for('ingresar') }}"><button type="button"> Cerrar sesión </button></a>
+      </center>
+    </div>
+  
+    <center>
+      <br>
+      <br>
+       <h1> Bienvenido a Warenote </h1>
+       <h3> </h3>
+       <br>
+       <br>
+       <br>
+       <img src="{{ url_for('static', filename='Warenot.png') }}"  width="400" height="300" alt="Mi imagen" >
+    </center>
+</body>
+</html>

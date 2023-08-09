@@ -7,38 +7,34 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
 </head>
 <body>
-    <div class="menu">
-        <a href="{{ url_for('Registrar_Nuevo_Usuario') }}"><button type="button"> Registrar Usuario </button></a>
-        <a href="{{ url_for('BuscarUsuario') }}"><button type="button">Buscar Usuario</button></a>
-        <a href="{{ url_for('Modificar_Usuario') }}"><button type="button"> Modificar Usuario </button></a>
-        <a href="{{ url_for('Eliminar_Usuario') }}"><button type="button"> Eliminar Usuario </button></a>
-        <a href="{{ url_for('RegistrarCliente') }}"><button type="button"> Registro Cliente  </button></a>
-        <a href="{{ url_for('ModificarCliente') }}"><button type="button"> Editar un Cliente  </button></a>
-        <a href="{{ url_for('EditarTramite') }}"><button type="button"> Inicio de Tramite </button></a>
-        <a href="{{ url_for('IngresoPago') }}"><button type="button"> Ingreso de Pago </button></a>
-        <a href="{{ url_for('BuscarTramite') }}"><button type="button"> Buscar Tramite  </button></a>
-        <a href="{{ url_for('BuscarCliente') }}"><button type="button"> Buscar Cliente </button></a>
-
-    </div>
+    
+    {%with mensajes=get_flashed_messages()%}
+      {%if mensajes%}
+        {%for msj in mensajes%}
+         <h3>{{msj}}</h3>
+        {%endfor%}
+      {%endif%}
+    {%endwith%}
     <div class="Formulario">
         <h1> Ingreso de Pago  </h1>   
-        <form action="/EditarTramite" method="post">
+        <form action="/Ingresar_pago" method="post">
+
             <div class="username">
-                <input type="text" name="TipoPago">
-                <label>Tipo de pago</label>
+                <input type="text" name="TipoPago" placeholder="Tipo de pago" required>
+              
             </div>
             <div class="username">
-                <input type="text" name="CantidadPa">
-                <label>Cantidad</label>
+                <input type="text" name="CantidadPa" placeholder="Cantidad" required>
+                
             </div>
             <div class="username">
-                <input type="date" name="IDTramitePag">
-                <label>Fecha</label>
+                <input type="date" name="FechaP" placeholder="Fecha" required>
+             
             </div>
     
             <div class="use">
                 <button type="submit"> Guardar</button>
-                <button type="reset"> Cancelar </button>
+                <a href=/pag_princ_usuario.html><button type="button"> Cancelar </button></a>
             </div>
         </form>
     

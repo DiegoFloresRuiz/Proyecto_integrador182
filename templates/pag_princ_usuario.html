@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+    <title>Página de inicio</title>
+</head>
+<body>
+    <div class="menu">
+      <center>
+               
+        <a href="{{ url_for('RegistrarCliente') }}"><button type="button"> Registro Cliente  </button></a>
+        <a href="{{ url_for('BuscarCliente') }}"><button type="button"> Buscar Cliente </button></a>
+        <a href="{{ url_for('cClientes') }}"><button type="button"> Clientes registrados </button></a>
+
+        <a href="{{ url_for('inventarioT') }}"><button type="button"> Trámites registrados </button></a>
+        <a href="{{ url_for('EditarTramite') }}"><button type="button"> Inicio de Tramite </button></a>
+        <a href="{{ url_for('BuscarTramite') }}"><button type="button"> Buscar Tramite  </button></a>
+        <a href="{{ url_for('IngresoPago') }}"><button type="button"> Ingreso de Pago </button></a>
+      
+        <a href="{{ url_for('ingresar') }}"><button type="button"> Cerrar sesión </button></a>
+      </center>
+    </div>
+    {%with mensajes=get_flashed_messages()%}
+    {% if mensajes%}
+      {%for msj in mensajes%}
+      <h3> {{msj}} </h3>
+      {%endfor%}
+    {%endif%}
+  {%endwith%}
+    <center>
+      <br>
+      <br>
+       <h1> Bienvenido a Warenote </h1>
+       <h3> </h3>
+       <br>
+       <br>
+       <br>
+       <img src="{{ url_for('static', filename='Warenot.png') }}"  width="400" height="500" alt="Mi imagen" >
+    </center>
+</body>
+</html>

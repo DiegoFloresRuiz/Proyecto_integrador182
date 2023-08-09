@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+    <title>Actualizar datos del usuario</title>
+</head>
+<body>
+   
+    <center>
+    <br>
+    <h1> Actualizar usuario </h1>
+    <br>
+    <br>
+    <form action="/actualizar/{{usuarios.0}}" method="POST">
+        <input type="text" name="nombre" value="{{usuarios.1}}">
+        <input type="text" name="ApellidoP" value="{{usuarios.2}}">
+        <input type="text" name="ApellidoM" value="{{usuarios.3}}">
+        <input type="text" name="Cargo" value="{{usuarios.4}}">
+        <input type="text" name="password" value="{{usuarios.5}}">
+        
+        <button type="submit"> Actualizar </button>
+        <a href=/vcarteraUsuarios><button type="button"> Cancelar </button></a>
+            </form>
+    </center>
+</body>
+</html>

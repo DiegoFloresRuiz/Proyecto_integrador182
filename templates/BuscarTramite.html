@@ -7,35 +7,46 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
 </head>
 <body>
-    <div class="menu">
-        <a href="{{ url_for('Registrar_Nuevo_Usuario') }}"><button type="button"> Registrar Usuario </button></a>
-        <a href="{{ url_for('BuscarUsuario') }}"><button type="button">Buscar Usuario</button></a>
-        <a href="{{ url_for('Modificar_Usuario') }}"><button type="button"> Modificar Usuario </button></a>
-        <a href="{{ url_for('Eliminar_Usuario') }}"><button type="button"> Eliminar Usuario </button></a>
-        <a href="{{ url_for('RegistrarCliente') }}"><button type="button"> Registro Cliente  </button></a>
-        <a href="{{ url_for('ModificarCliente') }}"><button type="button"> Editar un Cliente  </button></a>
-        <a href="{{ url_for('EditarTramite') }}"><button type="button"> Inicio de Tramite </button></a>
-        <a href="{{ url_for('IngresoPago') }}"><button type="button"> Ingreso de Pago </button></a>
-        <a href="{{ url_for('EliminarFactura') }}"><button type="button"> Eliminar Factura </button></a>
-        <a href="{{ url_for('BuscarCliente') }}"><button type="button"> Buscar Cliente </button></a>
-
-    </div>
+   
+    {%with mensajes=get_flashed_messages()%}
+      {%if mensajes%}
+        {%for msj in mensajes%}
+         <h3>{{msj}}</h3>
+        {%endfor%}
+      {%endif%}
+    {%endwith%}
     <div class="Formulario">
-        <h1> Buscar Usuario </h1>   
-        <form action="/BuscarUsuario" method="post">
-            <div class="use">
-                <button type="submit"> Buscar por Numero Expediente</button>
-                <button type="submit"> Buscar Por ID Tramite </button>
-                <button type="submit"> Buscar Por Nombre tramite </button>
-            </div>
+        <h1> Buscar Tramite </h1>   
+        <form action="/buscartramite" method="post">
             <div class="username">
-                <input type="text" name="ApellidoM">
-                <label>Busca por Palabara Clave</label>
+                <input type="text" name="NumeroExpediente" placeholder="Número de expediente" required>
+                
+        <form action="/BuscarUsuario" method="post">
+
             </div>
             <div class="use">
                 <button type="submit"> Buscar</button>
-                <button type="reset"> Canselar </button>
+                <a href=/pag_princ_usuario.html><button type="button"> Cancelar </button></a>
             </div>
+                <div class="username">
+                    <input type="text" name="NumeroExpediente" placeholder="Número de expediente" value="{{ num_expediente }}">
+                    
+                </div>
+                <div class="username">
+                    <input type="text" name="NumeroTomo" placeholder="Número de tomo" value="{{ num_tomo }}">
+                    
+                </div>
+                <div class="username">
+                    <input type="text" name="Operacion" placeholder="Operación" value="{{ operacion }}">
+                    
+                </div>
+        
+                <div class="username">
+                    <input type="text" name="Cliente" placeholder="Cliente" value="{{ cliente }}">
+                  
+                </div>
+            
+
         </form>
     
     </div>

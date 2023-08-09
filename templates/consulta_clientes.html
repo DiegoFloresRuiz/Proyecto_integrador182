@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+    <title>Consulta clientes </title>
+</head>
+<body>
+    <div class="menu">
+      
+            <a href="{{ url_for('ppu') }}"><button type="button"> Página de inicio </button></a>
+        
+      </div>
+<br>
+<br>
+{%with mensajes=get_flashed_messages()%}
+{% if mensajes%}
+  {%for msj in mensajes%}
+  <h3> {{msj}} </h3>
+  {%endfor%}
+{%endif%}
+{%endwith%}
+<center>
+<h1>Clientes registrados</h1>
+<br>
+<table>
+<thead>
+<tr>
+<td>Id:</td>
+<td>Nombre:</td>
+<td>Apellido paterno:</td>
+<td>Apellido materno:</td>
+<td>RFC:</td>
+<td>Calle:</td>
+<td>Num. Int:</td>
+<td>Num. Ext:</td>
+<td>Colonia:</td>
+<td>Código Postal:</td>
+<td>Delegación:</td>
+<td>Ciudad:</td>
+<td>Estado:</td>
+<td>Teléfono:</td>
+<td>Correo:</td>
+</tr>
+</thead>
+
+<tbody> 
+{%for cli in listaClientes %}
+<tr>
+<td>{{ cli.0 }}</td>
+<td>{{ cli.1 }}</td>
+<td>{{ cli.2 }}</td>
+<td>{{ cli.3 }}</td>
+<td>{{ cli.4 }}</td>
+<td>{{ cli.5 }}</td>
+<td>{{ cli.6 }}</td>
+<td>{{ cli.7 }}</td>
+<td>{{ cli.8 }}</td>
+<td>{{ cli.9 }}</td>
+<td>{{ cli.10 }}</td>
+<td>{{ cli.11 }}</td>
+<td>{{ cli.12 }}</td>
+<td>{{ cli.13 }}</td>
+<td>{{ cli.14 }}</td>
+<td>
+  <a href="/vactualizarC/{{ cli.0 }}">Editar</a>
+  <a href="/veliminarC/{{ cli.0 }}">Eliminar</a>
+</td>
+</tr>
+
+{%endfor %}
+</tbody>
+</table>
+</center>
+
+</body>
+</html>
