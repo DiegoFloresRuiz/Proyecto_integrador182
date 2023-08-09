@@ -8,16 +8,7 @@
 </head>
 <body>
     <div class="menu">
-        <a href="{{ url_for('Registrar_Nuevo_Usuario') }}"><button type="button"> Registrar Usuario </button></a>
-        <a href="{{ url_for('BuscarUsuario') }}"><button type="button">Buscar Usuario</button></a>
-        <a href="{{ url_for('Modificar_Usuario') }}"><button type="button"> Modificar Usuario </button></a>
-        <a href="{{ url_for('Eliminar_Usuario') }}"><button type="button"> Eliminar Usuario </button></a>
-        <a href="{{ url_for('RegistrarCliente') }}"><button type="button"> Registro Cliente  </button></a>
-        <a href="{{ url_for('ModificarCliente') }}"><button type="button"> Editar un Cliente  </button></a>
-        <a href="{{ url_for('EditarTramite') }}"><button type="button"> Inicio de Tramite </button></a>
-        <a href="{{ url_for('IngresoPago') }}"><button type="button"> Ingreso de Pago </button></a>
-        <a href="{{ url_for('BuscarTramite') }}"><button type="button"> Buscar Tramite  </button></a>
-        <a href="{{ url_for('BuscarCliente') }}"><button type="button"> Buscar Cliente </button></a>
+       
 
     </div>
     {%with mensajes=get_flashed_messages()%}
@@ -31,64 +22,64 @@
         <h1> Registrar Cliente </h1>   
         <form action="/RegistrarNCliente" method="post">
             <div class="username">
-                <input type="text" name="NombreCli" required>
-                <label>Nombre Cliente</label>
+                <input type="text" name="NombreCli" placeholder="Nombre(s)" required>
+              
             </div>
             <div class="username">
-                <input type="text" name="ApellidoPCLI" required>
-                <label>Apellido Paterno</label>
+                <input type="text" name="ApellidoPCLI" placeholder="Apellido paterno" required>
+                
             </div>
             <div class="username">
-                <input type="text" name="ApellidoMCLI" required>
-                <label>Apellido Materno</label>
+                <input type="text" name="ApellidoMCLI" placeholder="Apellido Materno" required>
+            
             </div>
             <div class="username">
-                <input type="text" name="RFCCLI" required>
-                <label>RFC</label>
+                <input type="text" name="RFCCLI" placeholder="RFC" required>
+                
             </div>
             <div class="username">
-                <input type="text" name="CalleCLI" required>
-                <label>Calle</label>
+                <input type="text" name="CalleCLI" placeholder="Calle" required>
+               
             </div>
             <div class="username">
-                <input type="text" name="NICLI" required>
-                <label>Número Interno</label>
+                <input type="text" name="NICLI" placeholder="Número interno" required>
+              
             </div>
             <div class="username">
-                <input type="text" name="NECLI" required>
-                <label>Número Externo</label>
+                <input type="text" name="NECLI" placeholder="Número externo" required>
+                
             </div>
             <div class="username">
-                <input type="text" name="coloniaCLI" required>
-                <label> Colonia </label>
+                <input type="text" name="coloniaCLI" placeholder="Colonia" required>
+              
             </div>
             <div class="username">
-                <input type="text" name="CPCLI" required>
-                <label> CP </label>
+                <input type="text" name="CPCLI" placeholder="Código Postal" required>
+               
             </div>
             <div class="username">
-                <input type="text" name="DELEGACIONCLI" required>
-                <label> Delegacion </label>
+                <input type="text" name="DELEGACIONCLI" placeholder="Delegación" required>
+                
             </div>
             <div class="username">
-                <input type="text" name="CiudadCLI" required>
-                <label> Ciudad </label>
+                <input type="text" name="CiudadCLI" placeholder="Ciudad" required>
+               
             </div>
             <div class="username">
-                <input type="text" name="EstadoCLI" required>
-                <label> Estado </label>
+                <input type="text" name="EstadoCLI" placeholder="Estado" required>
+               
             </div>
             <div class="username">
-                <input type="text" name="TelefonoCLI" required>
-                <label> Telefono </label>
+                <input type="text" name="TelefonoCLI" placeholder="Teléfono" required>
+            
             </div>
             <div class="username">
-                <input type="text" name="correCLI" required>
-                <label> Correo </label>
+                <input type="text" name="correCLI" placeholder="Correo" required>
+               
             </div>
             <div class="use">
                 <button type="submit"> Guardar </button>
-                <button type="reset"> Cancelar </button>
+                <a href=/pag_princ_usuario.html><button type="button"> Cancelar </button></a>
             </div>
         </form>
     

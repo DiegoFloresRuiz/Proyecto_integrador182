@@ -7,19 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
 </head>
 <body>
-    <div class="menu">
-        <a href="{{ url_for('Registrar_Nuevo_Usuario') }}"><button type="button"> Registrar Usuario </button></a>
-        <a href="{{ url_for('BuscarUsuario') }}"><button type="button">Buscar Usuario</button></a>
-        <a href="{{ url_for('Modificar_Usuario') }}"><button type="button"> Modificar Usuario </button></a>
-        <a href="{{ url_for('Eliminar_Usuario') }}"><button type="button"> Eliminar Usuario </button></a>
-        <a href="{{ url_for('RegistrarCliente') }}"><button type="button"> Registro Cliente  </button></a>
-        <a href="{{ url_for('ModificarCliente') }}"><button type="button"> Editar un Cliente  </button></a>
-        <a href="{{ url_for('EditarTramite') }}"><button type="button"> Inicio de Tramite </button></a>
-        <a href="{{ url_for('IngresoPago') }}"><button type="button"> Ingreso de Pago </button></a>
-        <a href="{{ url_for('BuscarTramite') }}"><button type="button"> Buscar Tramite  </button></a>
-        <a href="{{ url_for('BuscarCliente') }}"><button type="button"> Buscar Cliente </button></a>
-
-    </div>
+    
     {%with mensajes=get_flashed_messages()%}
     {%if mensajes%}
       {%for msj in mensajes%}
@@ -32,25 +20,25 @@
         <h1> Iniciar Tramite  </h1>   
         <form action="/Inciar_Tramite" method="post">
             <div class="username">
-                <input type="text" name="NumeroExpediente" required>
-                <label>Numero de expediente</label >
+                <input type="text" name="NumeroExpediente" placeholder="Número expediente" required>
+               
             </div>
             <div class="username">
-                <input type="text" name="NumeroTomo" required>
-                <label>Numero de Tomo</label>
+                <input type="text" name="NumeroTomo" placeholder="Número de tomo" required>
+              
             </div>
             <div class="username">
-                <input type="text" name="Operacion" required>
-                <label>Operacion</label>
+                <input type="text" name="Operacion" placeholder="Operación" required>
+              
             </div>
     
             <div class="username">
-                <input type="text" name="Cliente" required>
-                <label>Cliente</label>
+                <input type="text" name="Cliente" placeholder="Cliente" required>
+                
             </div>
             <div class="use">
                 <button type="submit"> Guardar</button>
-                <button type="reset"> Cancelar </button>
+                <a href=/pag_princ_usuario.html><button type="button"> Cancelar </button></a>
             </div>
         </form>
     

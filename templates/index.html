@@ -6,21 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notaria</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='Index.css') }}">
+    
 </head>
 <body>
-
-
+    <br>
+    <br>
+    <center>
+    <h1>Bienvenido a Warenote</h1>
+    
+</center>
     <form action="/ingresar" method="POST"> 
         <div class="Formulario">
-            <h1> Binevenido</h1>
+            <h1> Iniciar sesión </h1>
             <form method="post">
                 <div class="username">
-                    <input type="text" name="nombre" required>
-                    <label>Usuario</label>
+                    <input type="text" name="nombre" placeholder="Usuario" required>
+                    
                 </div>
                 <div class="username">
-                    <input type="password" name="password" required>
-                    <label>contraseña</label>
+                    <input type="password" name="password" placeholder="Constraseña" required>
+                
                 </div> 
                 <div>
                 <button type="submit"> Iniciar </button>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+    <title>Trámites</title>
+</head>
+<body>
+    <div class="menu">
+      
+        <a href="{{ url_for('ppu') }}"><button type="button"> Página de inicio </button></a>
+    
+  </div>
+</form>
+<br>
+<br>
+<center>
+<h1>Trámites registrados</h1>
+<br>
+<table>
+<thead>
+<tr>
+<td>Id:</td>
+<td>Cliente:</td>
+<td>Num_Expediente:</td>
+<td>Num_tomo:</td>
+<td>Operación:</td>
+
+</tr>
+</thead>
+
+<tbody> 
+{%for tram in listaTramites %}
+<tr>
+<td>{{ tram.0 }}</td>
+<td>{{ tram.1 }}</td>
+<td>{{ tram.2 }}</td>
+<td>{{ tram.3 }}</td>
+<td>{{ tram.4 }}</td>
+
+<td>
+  <a href="/vactualizarT/{{ tram.0 }}">Editar</a>
+ 
+</td>
+</tr>
+
+{%endfor %}
+</tbody>
+</table>
+</center>
+
+</body>
+</html>

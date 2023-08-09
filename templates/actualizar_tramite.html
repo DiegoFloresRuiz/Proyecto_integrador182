@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+    <title>Actualizar datos trámite</title>
+</head>
+<body>
+   
+    <center>
+    <br>
+    <h1> Actualizar datos de trámites </h1>
+    <br>
+    <br>
+    <form action="/actualizarTram/{{tramites.0}}" method="POST">
+        <input type="text" name="num_exp" value="{{tramites.2}}">
+        <input type="text" name="num_tomo" value="{{tramites.3}}">
+        <input type="text" name="operacion" value="{{tramites.4}}">
+        
+        <button type="submit"> Actualizar </button>
+        <a href=/vinventarioTramites><button type="button"> Cancelar </button></a>
+            </form>
+    </center>
+</body>
+</html>

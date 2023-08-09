@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+    <title>Actualizar datos del cliente</title>
+</head>
+<body>
+   
+    <center>
+    <br>
+    <h1> Actualizar datos del cliente </h1>
+    <br>
+    <br>
+    <form action="/vactualizarCliente/{{clientes.0}}" method="POST">
+        <input type="text" name="nombre" value="{{clientes.1}}">
+        <input type="text" name="ApellidoP" value="{{clientes.2}}">
+        <input type="text" name="ApellidoM" value="{{clientes.3}}">
+        <input type="text" name="RFC" value="{{clientes.4}}">
+        <input type="text" name="Calle" value="{{clientes.5}}">
+        <input type="text" name="numint" value="{{clientes.6}}">
+        <input type="text" name="numext" value="{{clientes.7}}">
+        <input type="text" name="colonia" value="{{clientes.8}}">
+        <input type="text" name="cp" value="{{clientes.9}}">
+        <input type="text" name="delegacion" value="{{clientes.10}}">
+        <input type="text" name="ciudad" value="{{clientes.11}}">
+        <input type="text" name="estado" value="{{clientes.12}}">
+        <input type="text" name="telefono" value="{{clientes.13}}">
+        <input type="text" name="correo" value="{{clientes.14}}">
+        
+        <button type="submit"> Actualizar </button>
+        <a href=/vcarteraClientes><button type="button"> Cancelar </button></a>
+            </form>
+    </center>
+</body>
+</html>

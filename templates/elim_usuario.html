@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+    <title>Eliminar usuario</title>
+</head>
+<body>
+   
+    <center>
+    <br>
+    <h1> Eliminar usuario </h1>
+    <br>
+    <br>
+    <form action="/eliminar/{{usuarios.0}}" method="POST">
+        <input type="text" name="Nombre" value="{{usuarios.1}}">
+        <input type="text" name="AP" value="{{usuarios.2}}">
+        <input type="text" name="AM" value="{{usuarios.3}}">
+        <input type="text" name="Cargo" value="{{usuarios.4}}">
+        <input type="text" name="Contraseña" value="{{usuarios.5}}">
+        
+        
+        <button type="submit"> Eliminar </button>
+        <a href=/vcarteraUsuarios><button type="button"> Cancelar </button></a>
+        
+            </form>
+    </center>
+</body>
+</html>

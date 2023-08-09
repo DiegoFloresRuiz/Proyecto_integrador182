@@ -7,19 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
 </head>
 <body>
-    <div class="menu">
-        <a href="{{ url_for('Registrar_Nuevo_Usuario') }}"><button type="button"> Registrar Usuario </button></a>
-        <a href="{{ url_for('BuscarUsuario') }}"><button type="button">Buscar Usuario</button></a>
-        <a href="{{ url_for('Modificar_Usuario') }}"><button type="button"> Modificar Usuario </button></a>
-        <a href="{{ url_for('Eliminar_Usuario') }}"><button type="button"> Eliminar Usuario </button></a>
-        <a href="{{ url_for('RegistrarCliente') }}"><button type="button"> Registro Cliente  </button></a>
-        <a href="{{ url_for('ModificarCliente') }}"><button type="button"> Editar un Cliente  </button></a>
-        <a href="{{ url_for('EditarTramite') }}"><button type="button"> Inicio de Tramite </button></a>
-        <a href="{{ url_for('IngresoPago') }}"><button type="button"> Ingreso de Pago </button></a>
-        <a href="{{ url_for('BuscarTramite') }}"><button type="button"> Buscar Tramite  </button></a>
-        <a href="{{ url_for('BuscarCliente') }}"><button type="button"> Buscar Cliente </button></a>
 
-    </div>
     {%with mensajes=get_flashed_messages()%}
       {%if mensajes%}
         {%for msj in mensajes%}
@@ -31,76 +19,76 @@
         <h1> Buscar Cliente </h1>   
         <form action="/buscarcliente" method="post">
             <div class="username">
-                <input type="text" name="Nombre" required>
-                <label>Nombre</label>
+                <input type="text" name="Nombre" placeholder="Nombre(s)" required>
+                
             </div>
             <div class="username">
-                <input type="text" name="ApellidoP" required>
-                <label>Apellido Paterno</label>
+                <input type="text" name="ApellidoP" placeholder="Apellido paterno" required>
+                
             </div>
             <div class="username">
-                <input type="text" name="ApellidoM" required>
-                <label>Apellido Materno</label>
+                <input type="text" name="ApellidoM" placeholder="Apellido Materno" required>
+                
             </div>
             <div class="use">
                 <button type="submit"> Buscar</button>
-                <button type="reset"> Cancelar </button>
+               <a href=/pag_princ_usuario.html><button type="button"> Cancelar </button></a>
             </div>
             <div class="username">
-                <input type="text" name="NombreCli" value="{{ nombre }}">
-                <label>Nombre Cliente</label>
+                <input type="text" name="NombreCli" placeholder="Nombre Cliente" value="{{ nombre }}">
+               
             </div>
             <div class="username">
-                <input type="text" name="ApellidoPCLI" value="{{ apellido_paterno }}">
-                <label>Apellido Paterno</label>
+                <input type="text" name="ApellidoPCLI" placeholder="Apellido paterno" value="{{ apellido_paterno }}">
+                
             </div>
             <div class="username">
-                <input type="text" name="ApellidoMCLI" value="{{ apellido_materno }}">
-                <label>Apellido Materno</label>
+                <input type="text" name="ApellidoMCLI" placeholder="Apellido materno" value="{{ apellido_materno }}">
+              
             </div>
             <div class="username">
-                <input type="text" name="RFCCLI" value="{{ RFC }}">
-                <label>RFC</label>
+                <input type="text" name="RFCCLI" placeholder="RFC" value="{{ RFC }}">
+                
             </div>
             <div class="username">
-                <input type="text" name="CalleCLI" value="{{ calle }}">
-                <label>Calle</label>
+                <input type="text" name="CalleCLI" placeholder="Calle" value="{{ calle }}">
+              
             </div>
             <div class="username">
-                <input type="text" name="NICLI" value="{{ num_int }}">
-                <label>Número Interno</label>
+                <input type="text" name="NICLI" placeholder="Número interno" value="{{ num_int }}">
+                
             </div>
             <div class="username">
-                <input type="text" name="NECLI" value=" {{ num_ext }}">
-                <label>Número Externo</label>
+                <input type="text" name="NECLI" placeholder="Número externo" value=" {{ num_ext }}">
+                
             </div>
             <div class="username">
-                <input type="text" name="coloniaCLI" value="{{ colonia }}">
-                <label> Colonia </label>
+                <input type="text" name="coloniaCLI" placeholder="Colonia" value="{{ colonia }}">
+                
             </div>
             <div class="username">
-                <input type="text" name="CPCLI" value="{{ codigo_postal }}">
-                <label> CP </label>
+                <input type="text" name="CPCLI" placeholder="Código Postal" value="{{ codigo_postal }}">
+                
             </div>
             <div class="username">
-                <input type="text" name="DELEGACIONCLI" value="{{ delegacion }}">
-                <label> Delegacion </label>
+                <input type="text" name="DELEGACIONCLI" placeholder="Delegación" value="{{ delegacion }}">
+               
             </div>
             <div class="username">
-                <input type="text" name="CiudadCLI" value="{{ ciudad }}">
-                <label> Ciudad </label>
+                <input type="text" name="CiudadCLI" placeholder="Ciudad" value="{{ ciudad }}">
+              
             </div>
             <div class="username">
-                <input type="text" name="EstadoCLI" value="{{ estado }}">
-                <label> Estado </label>
+                <input type="text" name="EstadoCLI" placeholder="Estado" value="{{ estado }}">
+                
             </div>
             <div class="username">
-                <input type="text" name="TelefonoCLI" value="{{ telefono }}">
-                <label> Telefono </label>
+                <input type="text" name="TelefonoCLI" placeholder="Teléfono" value="{{ telefono }}">
+                
             </div>
             <div class="username">
-                <input type="text" name="correCLI" value="{{ correo }}">
-                <label> Correo </label>
+                <input type="text" name="correCLI" placeholder="Correo" value="{{ correo }}">
+                
             </div>
         </form>
     

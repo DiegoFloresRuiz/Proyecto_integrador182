@@ -25,6 +25,9 @@ def Registro_Nuevo_Usuario():
 def index():
     return render_template('index.html')
 
+@app.route('/pag_princ_usuario.html')
+def ppu():
+    return render_template('pag_princ_usuario.html')
 
 @app.route('/ingresar', methods=['GET', 'POST'])
 def ingresar():
@@ -33,29 +36,29 @@ def ingresar():
         Vpassword = request.form['password']
         
         usu = {
-            'DiegoFloresRuiz': 'Admin1',
-            'IvanManzoRuiz': 'Admin2'
+            'ABCD123': 'Admin1',
+            'EFGH123': 'Usuario1'
         }
         
-        if Vusuario == 'DiegoFloresRuiz':
+        if Vusuario == 'ABCD123':
             if Vusuario in usu and usu[Vusuario] == Vpassword:
                 session['usuario'] = Vusuario
                 return redirect(url_for('HolaU'))
             else:
                 flash('Usuario o contraseña incorrectos')
                 return redirect(url_for('index'))
-        elif Vusuario == 'IvanManzoRuiz':
+        elif Vusuario == 'EFGH123':
             if Vusuario in usu and usu[Vusuario] == Vpassword:
                 session['nombre'] = Vusuario
-                return redirect(url_for('HolaU'))
+                return redirect(url_for('ppu'))
             else:
                 flash('Usuario o contraseña incorrectos')
                 return redirect(url_for('index'))
         else:
             flash('Usuario o contraseña incorrectos')
             return redirect(url_for('index'))
-    
-    # Si la solicitud es GET, renderiza la plantilla index.html
+   
+    # Si la solicitud es GET, renderiza la plantilla login.html
     return render_template('index.html')
 
 @app.route('/BuscarUsuario.html')
@@ -144,25 +147,25 @@ def buscar_usuario():
 
     return render_template('BuscarUsuario.html')
 
-@app.route('/Modificar_Usuario', methods=['POST'])
-def modificar_usuario():
-    if request.method == 'POST':
-        nombre = request.form['nombre']
-        apellido_paterno = request.form['apellido_paterno']
-        apellido_materno = request.form['apellido_materno']
-        cargo = request.form['cargo']
-        contraseña = request.form['contrasena']
+#@app.route('/Modificar_Usuario', methods=['POST'])
+#def modificar_usuario():
+    #if request.method == 'POST':
+       # nombre = request.form['nombre']
+       # apellido_paterno = request.form['apellido_paterno']
+        #apellido_materno = request.form['apellido_materno']
+        #cargo = request.form['cargo']
+        #contraseña = request.form['contrasena']
 
-        cursor = mysql.connection.cursor()
+       # cursor = mysql.connection.cursor()
 
-        cursor.execute('UPDATE registro_usuario SET nombre=%s, apellido_paterno=%s, apellido_materno=%s, cargo=%s, contrasena=%s WHERE nombre=%s AND apellido_paterno=%s AND apellido_materno=%s', (nombre, apellido_paterno, apellido_materno, cargo, contraseña, nombre,apellido_paterno,apellido_materno))
+        #cursor.execute('UPDATE registro_usuario SET nombre=%s, apellido_paterno=%s, apellido_materno=%s, cargo=%s, contrasena=%s WHERE nombre=%s AND apellido_paterno=%s AND apellido_materno=%s', (nombre, apellido_paterno, apellido_materno, cargo, contraseña, nombre,apellido_paterno,apellido_materno))
 
         # Guardar los cambios en la base de datos
-        mysql.connection.commit()
-        flash('Usuario modificado correctamente')
-        return render_template('Modificar_Usuario.html')
+        #mysql.connection.commit()
+       # flash('Usuario modificado correctamente')
+        #return render_template('Modificar_Usuario.html')
 
-    return render_template('Modificar_Usuario.html')
+    #return render_template('Modificar_Usuario.html')
 
 
 @app.route('/Eliminar_Usuario', methods=['POST'])
@@ -209,7 +212,7 @@ def Inciar_Tramite():
         Vop = request.form['Operacion']
         Vcli = request.form['Cliente']
         IT = mysql.connection.cursor()
-        IT.execute('insert into inicio_tramite(num_expediente, num_tomo, operacion, cliente) values (%s,%s,%s,%s)',(VnumE,VnumT,Vop,Vcli))
+        IT.execute('insert into inicio_tramite(num_expediente, num_tomo, operacion,id_cliente) values (%s,%s,%s,%s)',(VnumE,VnumT,Vop,Vcli))
         mysql.connection.commit()
     flash('Datos de nuevo trámite agregados correctamente a la base de datos')
     return redirect(url_for('EditarTramite'))
@@ -285,6 +288,150 @@ def buscarcliente():
 
     return render_template('BuscarCliente.html')
 
+@app.route('/vcarteraUsuarios') 
+def cUsuarios():
+    inv=mysql.connection.cursor()
+    inv.execute('select * from registro_usuario')
+    mysql.connection.commit()
+
+    consulta_inv=inv.fetchall() 
+    return render_template('consulta_usuarios.html',listaUsuarios=consulta_inv)
+
+@app.route('/vactualizar/<id>') 
+def veditar(id):
+    editar=mysql.connection.cursor()
+    editar.execute('select * from registro_usuario where id = %s',(id,))
+    consulta=editar.fetchone() 
+    return render_template('actualizar_usuario.html',usuarios=consulta)
+
+@app.route('/actualizar/<id>',methods=['POST']) 
+def actualizar(id): 
+   if request.method == 'POST':
+       _nombre=request.form['nombre']
+       _AP=request.form['ApellidoP']
+       _AM=request.form['ApellidoM']
+       _cargo=request.form['Cargo']
+       _password=request.form['password']
+
+       curAct=mysql.connection.cursor()
+       curAct.execute('update registro_usuario set nombre=%s, apellido_paterno=%s, apellido_materno=%s, cargo=%s, contrasena=%s where id = %s', (_nombre,_AP,_AM,_cargo,_password,id))
+       mysql.connection.commit()
+
+       flash('Datos del usuario actualizados en la base de datos correctamente')
+       return redirect(url_for('actualizar_usuario'))
+   
+@app.route('/veliminar/<id>') 
+def eliminarUsuario(id):
+    eliminar=mysql.connection.cursor()
+    eliminar.execute('select * from registro_usuario where id = %s',(id,))
+    consulta=eliminar.fetchone()
+ 
+    return render_template('elim_usuario.html',usuarios=consulta)
+
+@app.route('/eliminar/<id>',methods=['POST']) 
+def eliminar(id):
+    if request.method=='POST':
+      eliminar=mysql.connection.cursor()
+      eliminar.execute('delete from registro_usuario where id = %s',(id,))
+      mysql.connection.commit()
+
+    
+    flash('Usuario eliminado correctamente')
+    return redirect(url_for('HolaU'))
+
+
+@app.route('/vcarteraClientes') 
+def cClientes():
+    inv=mysql.connection.cursor()
+    inv.execute('select * from registro_cliente')
+    mysql.connection.commit()
+
+    consulta_inv=inv.fetchall() 
+    return render_template('consulta_clientes.html',listaClientes=consulta_inv)
+
+@app.route('/vactualizarC/<id>') 
+def editarC(id):
+    editar=mysql.connection.cursor()
+    editar.execute('select * from registro_cliente where id_cliente = %s',(id,))
+    consulta=editar.fetchone() 
+    return render_template('actualizar_cliente.html',clientes=consulta)
+
+@app.route('/vactualizarCliente/<id>',methods=['POST']) 
+def actualizarCliente(id): 
+   if request.method == 'POST':
+       _nombre=request.form['nombre']
+       _AP=request.form['ApellidoP']
+       _AM=request.form['ApellidoM']
+       _rfc=request.form['RFC']
+       _calle=request.form['Calle']
+       _numint=request.form['numint']
+       _numext=request.form['numext']
+       _colonia=request.form['colonia']
+       _cp=request.form['cp']
+       _del=request.form['delegacion']
+       _ciudad=request.form['ciudad']
+       _estado=request.form['estado']
+       _tel=request.form['telefono']
+       _correo=request.form['correo']
+
+       curAct=mysql.connection.cursor()
+       curAct.execute('update registro_cliente set nombre=%s, apellido_paterno=%s, apellido_materno=%s, rfc=%s, calle=%s, num_int=%s, num_ext=%s,colonia=%s,codigo_postal=%s,delegacion=%s,ciudad=%s,estado=%s,telefono=%s,correo=%s where id_cliente = %s', (_nombre,_AP,_AM,_rfc,_calle,_numint,_numext,_colonia,_cp,_del,_ciudad,_estado,_tel,_correo,id))
+       mysql.connection.commit()
+
+       flash('Datos del cliente actualizados en la base de datos correctamente')
+       return redirect(url_for('cClientes'))
+   
+@app.route('/veliminarC/<id>') 
+def eliminarC(id):
+    eliminar=mysql.connection.cursor()
+    eliminar.execute('select * from registro_cliente where id_cliente = %s',(id,))
+    consulta=eliminar.fetchone()
+ 
+    return render_template('elim_cliente.html',clientes=consulta)
+
+
+@app.route('/eliminarCliente/<id>',methods=['POST']) 
+def eliminarCliente(id):
+    if request.method=='POST':
+      eliminar=mysql.connection.cursor()
+      eliminar.execute('delete from registro_cliente where id_cliente = %s',(id,))
+      mysql.connection.commit()
+
+    
+    flash('Cliente eliminado correctamente')
+    return redirect(url_for('cClientes'))
+
+
+@app.route('/vinventarioTramites') 
+def inventarioT():
+    inv=mysql.connection.cursor()
+    inv.execute('select * from inicio_tramite')
+    mysql.connection.commit()
+
+    consulta_inv=inv.fetchall() 
+    return render_template('consulta_tramites.html',listaTramites=consulta_inv)
+
+@app.route('/vactualizarT/<id>') 
+def editarT(id):
+    editar=mysql.connection.cursor()
+    editar.execute('select * from inicio_tramite where id_tramite = %s',(id,))
+    consulta=editar.fetchone() 
+    return render_template('actualizar_tramite.html',tramites=consulta)
+
+@app.route('/actualizarTram/<id>',methods=['POST']) 
+def actualizarT(id): 
+   if request.method == 'POST':
+       _num_exp=request.form['num_exp']
+       _num_tomo=request.form['num_tomo']
+       _operacion=request.form['operacion']
+
+       curAct=mysql.connection.cursor()
+       curAct.execute('update inicio_tramite set num_expediente=%s, num_tomo=%s, operacion=%s where id_tramite = %s', (_num_exp,_num_tomo,_operacion,id))
+       mysql.connection.commit()
+
+       flash('Trámite actualizado correctamente')
+       return redirect(url_for('inventarioT'))
+   
 
 if __name__=='__main__':
     app.run(port= 9000, debug=True) #debug=true activaactualizacion 

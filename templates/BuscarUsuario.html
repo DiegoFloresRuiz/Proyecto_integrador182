@@ -7,19 +7,7 @@
     <title>Notaria</title>
 </head>
 <body>
-    <div class="menu">
-        <a href="{{ url_for('Registrar_Nuevo_Usuario') }}"><button type="button"> Registrar Usuario </button></a>
-        <a href="{{ url_for('BuscarUsuario') }}"><button type="button">Buscar Usuario</button></a>
-        <a href="{{ url_for('Modificar_Usuario') }}"><button type="button"> Modificar Usuario </button></a>
-        <a href="{{ url_for('Eliminar_Usuario') }}"><button type="button"> Eliminar Usuario </button></a>
-        <a href="{{ url_for('RegistrarCliente') }}"><button type="button"> Registro Cliente  </button></a>
-        <a href="{{ url_for('ModificarCliente') }}"><button type="button"> Editar un Cliente  </button></a>
-        <a href="{{ url_for('EditarTramite') }}"><button type="button"> Inicio de Tramite </button></a>
-        <a href="{{ url_for('IngresoPago') }}"><button type="button"> Ingreso de Pago </button></a>
-        <a href="{{ url_for('BuscarTramite') }}"><button type="button"> Buscar Tramite  </button></a>
-        <a href="{{ url_for('BuscarCliente') }}"><button type="button"> Buscar Cliente </button></a>
-
-    </div>
+    
     {%with mensajes=get_flashed_messages()%}
       {%if mensajes%}
         {%for msj in mensajes%}
@@ -50,7 +38,7 @@
                 <label>Apellido Materno</label>
             </div>
             <div class="use">
-                <button type="reset"> Cancelar </button>
+                <a href=/HolaU><button type="button"> Cancelar </button></a>
             </div>
         </form>
     
