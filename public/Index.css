@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: montserrat;
-    background: linear-gradient(150deg, #130000, white, #130000);
+    background: linear-gradient(150deg, #535557, #acb0b4, #535557);
     background-repeat: repeat;
     height: 100vh;
 }
@@ -104,7 +104,7 @@ button{
     width: 49%;
     height: 50px;
     border: 1px solid;
-    background: #130000;
+    background: #535557;
     border-radius: 30px;
     font-size: 18px;
     color: white;
