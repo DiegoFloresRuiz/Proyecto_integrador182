@@ -8,6 +8,18 @@
     <title>Eliminar usuario</title>
 </head>
 <body class="p-3 mb-2 bg-dark text-white">
+    {%with mensajes=get_flashed_messages()%}
+      {%if mensajes%}
+        {%for msj in mensajes%}
+
+        <script>Swal.fire(
+            '',
+            '{{ msj }}  ',
+            '')
+          </script>
+        {%endfor%}
+      {%endif%}
+    {%endwith%}
     <div class="d-grid gap-2">
         <div class="container d-flex justify-content-center align-items-center min-vh-100">
             <div class="card border-white mb-8" style="background-color: transparent;">
@@ -35,8 +47,8 @@
                         <div class="mb-3">
                             <input class="form-control form-control-lg" type="text" name="Contraseña" value="{{usuarios.5}}" placeholder="Contraseña">
                         </div>
-                        <button type="submit" class="btn btn-danger">Eliminar</button>
-                        <a href="/vcarteraUsuarios"><button type="button" class="btn btn-warning">Cancelar</button></a>
+                        <button type="submit" class="btn btn-secondary">Eliminar</button>
+                        <a href="/vcarteraUsuarios"><button type="button" class="btn btn-secondary">Cancelar</button></a>
                     </form>
                 </div>
             </div>

@@ -11,6 +11,20 @@
     <div class="container d-flex justify-content-center align-items-center min-vh-100"> 
         <div class="card border-white mb-8" style="background-color: transparent;">
             <div class="card-body text-white">
+
+                {%with mensajes=get_flashed_messages()%}
+                {%if mensajes%}
+                  {%for msj in mensajes%}
+          
+                  <script>Swal.fire(
+                    '',
+                    '{{ msj }}  ',
+                    '')
+                  </script>
+                  {%endfor%}
+                {%endif%}
+              {%endwith%}
+              
         <form action="/actualizar/{{usuarios.0}}" method="POST">
             <h1> Actualizar usuario </h1>
             <div class="mb-3">

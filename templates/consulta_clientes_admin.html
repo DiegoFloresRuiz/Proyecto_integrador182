@@ -20,12 +20,12 @@
 {%with mensajes=get_flashed_messages()%}
 {% if mensajes%}
   {%for msj in mensajes%}
- <!--
+ 
  <script>Swal.fire(
-    'Good job!',
+    '',
     '{{ msj }}  ',
-    'success')
-  </script>-->
+    '')
+  </script>
   {%endfor%}
 {%endif%}
 {%endwith%}

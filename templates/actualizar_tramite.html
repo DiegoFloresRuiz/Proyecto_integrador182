@@ -8,6 +8,18 @@
     <title>Actualizar datos trámite</title>
 </head>
     <body class="p-3 mb-2 bg-dark text-white">
+        {%with mensajes=get_flashed_messages()%}
+        {%if mensajes%}
+          {%for msj in mensajes%}
+  
+          <script>Swal.fire(
+            '',
+            '{{ msj }}  ',
+            '')
+          </script>
+          {%endfor%}
+        {%endif%}
+      {%endwith%}
         <div class="container d-flex justify-content-center align-items-center min-vh-50"> 
             <div class="card border-white mb-8" style="background-color: transparent;">
                 <div class="card-body text-white">

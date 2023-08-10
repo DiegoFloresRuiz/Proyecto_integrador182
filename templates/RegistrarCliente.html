@@ -13,9 +13,9 @@
       {%if mensajes%}
         {%for msj in mensajes%}
           <script>Swal.fire(
-            'Good job!',
+            '',
             '{{ msj }}  ',
-            'success')
+            '')
           </script>
         {%endfor%}
       {%endif%}
@@ -30,7 +30,7 @@
         <form action="/RegistrarNCliente" method="post">
      
             <div class="mb-3">
-            <input class="form-control form-control-lg" type="text" pname="NombreCli" placeholder="Nombre(s)" aria-label=".form-control-lg example" required>
+            <input class="form-control form-control-lg" type="text" name="NombreCli" placeholder="Nombre(s)" aria-label=".form-control-lg example" required>
             </div>
             <div class="mb-3">
             <input class="form-control form-control-lg" type="text" name="ApellidoPCLI" placeholder="Apellido paterno" aria-label=".form-control-lg example" required>
@@ -53,14 +53,16 @@
                     <div class="mb-3">
                     <input class="form-control form-control-lg" type="text" name="coloniaCLI" placeholder="Colonia" aria-label=".form-control-lg example" required>
                     </div>
-        </form>
+                    <div class="mb-3">
+                      <input class="form-control form-control-lg" type="text" name="EstadoCLI" placeholder="Estado" aria-label=".form-control-lg example" required>
+                      </div>
             </div>
           
             <div class="col-md-6">
               <br>
               <br>
               <br>
-              <form action="/RegistrarNCliente" method="post">
+           
                     <div class="mb-3">
                     <input class="form-control form-control-lg" type="text" name="CPCLI" placeholder="Código Postal"  aria-label=".form-control-lg example" required>
                     </div>

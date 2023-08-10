@@ -8,6 +8,7 @@
     <title>Eliminar cliente</title>
 </head>
 <body class="p-3 mb-2 bg-dark text-white">
+
     <h1 class="text-center"> Eliminar cliente </h1>
     <div class="container d-flex justify-content-center align-items-center min-vh-50">
         <div class="card border-white mb-8" style="background-color: transparent;">
@@ -16,11 +17,12 @@
                 {%with mensajes=get_flashed_messages()%}
                 {%if mensajes%}
                   {%for msj in mensajes%}
-                    <script>Swal.fire(
-                      'Se ha eliminado el registro correctamente',
-                      '{{ msj }}  ',
-                      'success')
-                    </script>
+          
+                  <script>Swal.fire(
+                    '',
+                    '{{ msj }}  ',
+                    '')
+                  </script>
                   {%endfor%}
                 {%endif%}
               {%endwith%}

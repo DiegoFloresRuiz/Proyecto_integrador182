@@ -123,7 +123,7 @@ def Guardar():
         CS = mysql.connection.cursor()
         CS.execute('insert into registro_usuario(nombre,apellido_paterno,apellido_materno,cargo,contrasena) values (%s,%s,%s,%s,%s)',(Vnombre,Vap,Vam,Vcargo,Vcontra))
         mysql.connection.commit()
-    flash('Usuario Agregado Correctamente')
+    flash('')
     return redirect(url_for('Registrar_Nuevo_Usuario'))
 
 @app.route('/buscarusuario', methods=['POST'])
@@ -224,7 +224,7 @@ def Ingresar_pago():
         VTP = request.form['TipoPago']
         VFecha = request.form['FechaP']
         IP = mysql.connection.cursor()
-        IP.execute('insert into IngresoPago(cantidad, tipo_pago, fecha) values (%s,%s,%s)',(VTP,VCant,VFecha))
+        IP.execute('insert into IngresoPago(cantidad, tipo_pago, fecha) values (%s,%s,%s)',(VCant,VTP,VFecha))
         mysql.connection.commit()
     flash('Información del pago agregado correctamente a la base de datos')    
     return redirect(url_for('Ingresar_pago'))
@@ -317,7 +317,7 @@ def actualizar(id):
        curAct.execute('update registro_usuario set nombre=%s, apellido_paterno=%s, apellido_materno=%s, cargo=%s, contrasena=%s where id = %s', (_nombre,_AP,_AM,_cargo,_password,id))
        mysql.connection.commit()
 
-       flash('Datos del usuario actualizados en la base de datos correctamente')
+       flash('Datos actualizados correctamente')
        return redirect(url_for('cUsuarios'))
 
    

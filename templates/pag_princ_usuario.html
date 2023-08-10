@@ -55,17 +55,7 @@
       </u>
         
     </div>
-    {%with mensajes=get_flashed_messages()%}
-    {% if mensajes%}
-      {%for msj in mensajes%}
-      <script>Swal.fire(
-        'Good job!',
-        '{{ msj }}  ',
-        'success')
-      </script>
-      {%endfor%}
-    {%endif%}
-  {%endwith%}
+    
   <center>
       <br>
       <br>
