@@ -1,4 +1,6 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session
+from datetime import datetime
+import os
+from flask import Flask, render_template, request, redirect, send_file, url_for, flash, session
 from flask_mysqldb import MySQL
 
 app = Flask(__name__, static_folder='public', template_folder='templates')
@@ -10,6 +12,22 @@ app.config['MYSQL_DB'] = "pi_flask"
 app.secret_key = 'mysecretkey'
 
 mysql = MySQL(app)
+
+
+
+
+
+CARPETA=os.path.join('uploads/')
+app.config['CARPETA']=CARPETA
+
+@app.route('/imagen/<nombre>')
+def obtener_imagen(nombre):
+    n=nombre
+    ruta_imagen = 'uploads\\'+n
+    return send_file(ruta_imagen)
+
+
+
 
 @app.route('/HolaU')
 def HolaU():
@@ -211,8 +229,22 @@ def Inciar_Tramite():
         VnumT = request.form['NumeroTomo']
         Vop = request.form['Operacion']
         Vcli = request.form['Cliente']
+
+
+
+        Vfoto=request.files['txtFoto']
+        now=datetime.now()
+        tiempo=now.strftime("%Y%H%M%S")
+        if Vfoto.filename!='':
+            nuevoNombreFoto=tiempo+Vfoto.filename
+            Vfoto.save("uploads/"+nuevoNombreFoto)
+
+
+
+
+
         IT = mysql.connection.cursor()
-        IT.execute('insert into inicio_tramite(num_expediente, num_tomo, operacion,id_cliente) values (%s,%s,%s,%s)',(VnumE,VnumT,Vop,Vcli))
+        IT.execute('insert into inicio_tramite(num_expediente, num_tomo, operacion,id_cliente, documento) values (%s,%s,%s,%s,%s)',(VnumE,VnumT,Vop,Vcli, nuevoNombreFoto))
         mysql.connection.commit()
     flash('Datos de nuevo trámite agregados correctamente a la base de datos')
     return redirect(url_for('EditarTramite'))
@@ -227,7 +259,7 @@ def Ingresar_pago():
         IP.execute('insert into IngresoPago(cantidad, tipo_pago, fecha) values (%s,%s,%s)',(VCant,VTP,VFecha))
         mysql.connection.commit()
     flash('Información del pago agregado correctamente a la base de datos')    
-    return redirect(url_for('Ingresar_pago'))
+    return redirect(url_for('IngresoPago'))
         
 
 @app.route('/buscartramite', methods=['POST'])
@@ -428,9 +460,22 @@ def actualizarT(id):
        _num_tomo=request.form['num_tomo']
        _operacion=request.form['operacion']
 
-       curAct=mysql.connection.cursor()
-       curAct.execute('update inicio_tramite set num_expediente=%s, num_tomo=%s, operacion=%s where id_tramite = %s', (_num_exp,_num_tomo,_operacion,id))
-       mysql.connection.commit()
+       varFoto=request.files['txtFoto']
+
+       now=datetime.now()
+       tiempo=now.strftime("%Y%H%M%S")
+       if varFoto.filename!='':
+            nuevoNombreFoto=tiempo+varFoto.filename
+            varFoto.save("uploads/"+nuevoNombreFoto)
+            curFoto=mysql.connection.cursor()
+            curFoto.execute("SELECT Documento from inicio_tramite where id_tramite=%s", (id,))
+            fila=curFoto.fetchall()
+            os.remove(os.path.join(app.config['CARPETA'], fila[0][0]))
+
+            curAct = mysql.connection.cursor()
+            curAct.execute('UPDATE inicio_tramite set num_expediente = %s, num_tomo =%s, operacion=%s, Documento=%s WHERE id_tramite=%s',(_num_exp,_num_tomo, _operacion, nuevoNombreFoto,  id))
+            mysql.connection.commit()
+
 
        flash('Trámite actualizado correctamente')
        return redirect(url_for('inventarioT'))
@@ -636,10 +681,27 @@ def actualizarT_a(id):
        _num_exp=request.form['num_exp']
        _num_tomo=request.form['num_tomo']
        _operacion=request.form['operacion']
+       varFoto=request.files['txtFoto']
 
+       now=datetime.now()
+       tiempo=now.strftime("%Y%H%M%S")
+       if varFoto.filename!='':
+            nuevoNombreFoto=tiempo+varFoto.filename
+            varFoto.save("uploads/"+nuevoNombreFoto)
+            curFoto=mysql.connection.cursor()
+            curFoto.execute("SELECT Documento from inicio_tramite where id=%s", (id,))
+            fila=curFoto.fetchall()
+            os.remove(os.path.join(app.config['CARPETA'], fila[0][0]))
+
+            curAct = mysql.connection.cursor()
+            curAct.execute('UPDATE inicio_tramite set num_expediente = %s, num_tomo =%s, operacion=%s, Documento=%s WHERE id=%s',(_num_exp,_num_tomo, _operacion, nuevoNombreFoto,  id))
+            mysql.connection.commit()
+
+
+       """
        curAct=mysql.connection.cursor()
        curAct.execute('update inicio_tramite set num_expediente=%s, num_tomo=%s, operacion=%s where id_tramite = %s', (_num_exp,_num_tomo,_operacion,id))
-       mysql.connection.commit()
+       mysql.connection.commit()"""
 
        flash('Trámite actualizado correctamente')
        return redirect(url_for('inventarioT_a'))
@@ -657,12 +719,18 @@ def veliminarT_a(id):
 @app.route('/eliminarT_a/<id>',methods=['POST']) 
 def eliminarT_a(id):
     if request.method=='POST':
+      curAct = mysql.connection.cursor()
+      curAct.execute("SELECT Documento FROM inicio_tramite WHERE id_tramite=%s", (id,))
+      Fila=curAct.fetchall()
+      os.remove(os.path.join(app.config['CARPETA'], Fila[0][0]))
+
+
       eliminar=mysql.connection.cursor()
       eliminar.execute('delete from inicio_tramite where id_tramite = %s',(id,))
       mysql.connection.commit()
 
     
-    flash('Trámite eliminado correctamente')
+      flash('Trámite eliminado correctamente')
     return redirect(url_for('inventarioT_a'))
 
 

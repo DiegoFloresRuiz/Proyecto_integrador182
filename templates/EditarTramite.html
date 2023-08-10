@@ -25,7 +25,7 @@
 <div class="container d-flex justify-content-center align-items-center min-vh-100"> 
   <div class="card border-white mb-8" style="background-color: transparent;">
     <div class="card-body text-white">
-    <form action="/Inciar_Tramite" method="post">
+    <form action="/Inciar_Tramite" enctype="multipart/form-data" method="post">
         <h1> Iniciar Tramite  </h1>  
         <div class="mb-3">
         <input class="form-control form-control-lg" type="text" name="NumeroExpediente" placeholder="Número expediente" aria-label=".form-control-lg example" required>
@@ -39,6 +39,10 @@
         <div class="mb-3">
             <input class="form-control form-control-lg" type="text" name="Cliente" placeholder="Cliente" aria-label=".form-control-lg example" required>
             </div>
+        <div class="mb-3">  
+              <label class="form-label">Sube tu imagen:</label>
+              <input class="form-control" type="file" name="txtFoto" id="formFileMultiple" multiple>
+        </div>
         <div class="use">
             <button type="submit"  class="btn btn-secondary"> Guardar</button>
             <a href=/pag_princ_usuario.html><button type="button" class="btn btn-secondary"> Cancelar </button></a>

@@ -28,6 +28,8 @@
       <th scope="col">Num_Expediente:</th>
       <th scope="col">Num_tomo:</th>
       <th scope="col">Operación:</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
      
 
     </tr>
@@ -40,6 +42,10 @@
       <td>{{ tram.2 }}</td>
       <td>{{ tram.3 }}</td>
       <td>{{ tram.4 }}</td>
+      <td>
+
+        <img width="300" class="rounded mx-auto d-block" src="{{ url_for('obtener_imagen', nombre=tram.5) }}"> 
+      </td>
       <td>
         <a href="/vactualizarT/{{ tram.0 }}" class="btn btn-secondary">Editar</a>
        

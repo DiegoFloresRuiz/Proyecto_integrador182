@@ -23,7 +23,7 @@
         <div class="container d-flex justify-content-center align-items-center min-vh-50"> 
             <div class="card border-white mb-8" style="background-color: transparent;">
                 <div class="card-body text-white">
-            <form action="/actualizarTram/{{tramites.0}}" method="POST">
+            <form action="/actualizarTram/{{tramites.0}}" enctype="multipart/form-data" method="POST">
                 <h1> Actualizar datos de trámites </h1>
                 <div class="mb-3">
                 <input  class="form-control form-control-lg" aria-label=".form-control-lg example" type="text" name="num_exp" value="{{tramites.2}}">    
@@ -33,6 +33,12 @@
                 </div>
                 <div class="mb-3">
                     <input  class="form-control form-control-lg" aria-label=".form-control-lg example" type="text" name="operacion" value="{{tramites.4}}">   
+                </div>
+                <div class="mb-3">  
+                    <img width="300" src="{{ url_for('obtener_imagen', nombre=tramites.5) }}">
+                    <br>
+                    <label class="form-label">Sube tu imagen:</label>
+                    <input class="form-control" type="file" name="txtFoto" id="formFileMultiple" multiple>
                 </div>
                 <button type="submit" class="btn btn-secondary"> Actualizar </button>
                 <a href=/vinventarioTramites><button type="button" class="btn btn-secondary"> Cancelar </button></a>

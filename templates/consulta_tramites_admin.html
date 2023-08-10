@@ -41,6 +41,10 @@
       <td>{{ tram.3 }}</td>
       <td>{{ tram.4 }}</td>
       <td>
+
+        <img width="300" class="rounded mx-auto d-block" src="{{ url_for('obtener_imagen', nombre=tram.5) }}"> 
+      </td>
+      <td>
         <a href="/vactualizarT_a/{{ tram.0 }}" class="btn btn-secondary">Editar</a>
         <a href="/veliminarT_a/{{ tram.0 }}" class="btn btn-secondary">Eliminar</a>
        
