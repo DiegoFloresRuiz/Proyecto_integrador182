@@ -2,9 +2,9 @@ body {
     margin: 0;
     padding: 0;
     font-family: montserrat;
-    background: linear-gradient(150deg, #130000, white, #130000);
+    background: linear-gradient(150deg, #555353, rgb(197, 192, 192), #555353);
     background-repeat: repeat;
-    height: 100vh;
+    height: 300vh;
 }
 
 .Formulario{
@@ -104,7 +104,7 @@ button{
     width: 30%;
     height: 50px;
     border: 1px solid;
-    background: #130000;
+    background: #000000;
     border-radius: 30px;
     font-size: 18px;
     color: white;

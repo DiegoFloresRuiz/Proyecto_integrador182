@@ -32,7 +32,7 @@ def ppu():
 @app.route('/ingresar', methods=['GET', 'POST'])
 def ingresar():
     if request.method == 'POST':
-        Vusuario = request.form['nombre']
+        Vusuario = request.form['Usuario']
         Vpassword = request.form['password']
         
         usu = {
@@ -49,7 +49,7 @@ def ingresar():
                 return redirect(url_for('index'))
         elif Vusuario == 'EFGH123':
             if Vusuario in usu and usu[Vusuario] == Vpassword:
-                session['nombre'] = Vusuario
+                session['usuario'] = Vusuario
                 return redirect(url_for('ppu'))
             else:
                 flash('Usuario o contraseña incorrectos')

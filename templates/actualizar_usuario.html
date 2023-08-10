@@ -3,26 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+ 
     <title>Actualizar datos del usuario</title>
 </head>
-<body>
-   
-    <center>
-    <br>
-    <h1> Actualizar usuario </h1>
-    <br>
-    <br>
-    <form action="/actualizar/{{usuarios.0}}" method="POST">
-        <input type="text" name="nombre" value="{{usuarios.1}}">
-        <input type="text" name="ApellidoP" value="{{usuarios.2}}">
-        <input type="text" name="ApellidoM" value="{{usuarios.3}}">
-        <input type="text" name="Cargo" value="{{usuarios.4}}">
-        <input type="text" name="password" value="{{usuarios.5}}">
-        
-        <button type="submit"> Actualizar </button>
-        <a href=/vcarteraUsuarios><button type="button"> Cancelar </button></a>
-            </form>
-    </center>
+<body class="p-3 mb-2 bg-dark text-white">
+    <div class="container d-flex justify-content-center align-items-center min-vh-100"> 
+        <div class="card border-white mb-8" style="background-color: transparent;">
+            <div class="card-body text-white">
+        <form action="/actualizar/{{usuarios.0}}" method="POST">
+            <h1> Actualizar usuario </h1>
+            <div class="mb-3">
+            <input  class="form-control form-control-lg" aria-label=".form-control-lg example" type="text" name="nombre" value="{{usuarios.1}}">    
+            </div>
+            <div class="mb-3">
+                <input  class="form-control form-control-lg" aria-label=".form-control-lg example" type="text" name="ApellidoP" value="{{usuarios.2}}">  
+            </div>
+            <div class="mb-3">
+                <input  class="form-control form-control-lg" aria-label=".form-control-lg example" type="text"name="ApellidoM" value="{{usuarios.3}}">   
+            </div>
+            <div class="mb-3">
+                <input  class="form-control form-control-lg" aria-label=".form-control-lg example" type="text" name="Cargo" value="{{usuarios.4}}"> 
+            </div>
+            <div class="mb-3">
+                <input  class="form-control form-control-lg" aria-label=".form-control-lg example" type="text" name="password" value="{{usuarios.5}}">   
+            </div>
+            <button type="submit" class="btn btn-secondary"> Actualizar </button>
+            <a href=/vcarteraUsuarios><button type="button" class="btn btn-secondary"> Cancelar </button></a>
+        </form>
+    </div>
+
 </body>
 </html>

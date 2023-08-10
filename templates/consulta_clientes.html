@@ -3,76 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <title>Consulta clientes </title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<body>
+<body class="p-3 mb-2 bg-dark text-white">
     <div class="menu">
-      
-            <a href="{{ url_for('ppu') }}"><button type="button"> Página de inicio </button></a>
-        
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{ url_for('ppu') }}">Página de inicio</a>
+        </li>
+      </nav>
+
       </div>
-<br>
-<br>
+      
 {%with mensajes=get_flashed_messages()%}
 {% if mensajes%}
   {%for msj in mensajes%}
-  <h3> {{msj}} </h3>
+  <script>Swal.fire(
+    'Good job!',
+    '{{ msj }}  ',
+    'success')
+  </script>
   {%endfor%}
 {%endif%}
 {%endwith%}
-<center>
-<h1>Clientes registrados</h1>
-<br>
-<table>
-<thead>
-<tr>
-<td>Id:</td>
-<td>Nombre:</td>
-<td>Apellido paterno:</td>
-<td>Apellido materno:</td>
-<td>RFC:</td>
-<td>Calle:</td>
-<td>Num. Int:</td>
-<td>Num. Ext:</td>
-<td>Colonia:</td>
-<td>Código Postal:</td>
-<td>Delegación:</td>
-<td>Ciudad:</td>
-<td>Estado:</td>
-<td>Teléfono:</td>
-<td>Correo:</td>
-</tr>
-</thead>
-
-<tbody> 
-{%for cli in listaClientes %}
-<tr>
-<td>{{ cli.0 }}</td>
-<td>{{ cli.1 }}</td>
-<td>{{ cli.2 }}</td>
-<td>{{ cli.3 }}</td>
-<td>{{ cli.4 }}</td>
-<td>{{ cli.5 }}</td>
-<td>{{ cli.6 }}</td>
-<td>{{ cli.7 }}</td>
-<td>{{ cli.8 }}</td>
-<td>{{ cli.9 }}</td>
-<td>{{ cli.10 }}</td>
-<td>{{ cli.11 }}</td>
-<td>{{ cli.12 }}</td>
-<td>{{ cli.13 }}</td>
-<td>{{ cli.14 }}</td>
-<td>
-  <a href="/vactualizarC/{{ cli.0 }}">Editar</a>
-  <a href="/veliminarC/{{ cli.0 }}">Eliminar</a>
-</td>
-</tr>
-
-{%endfor %}
-</tbody>
+<table class="table table-dark table-striped">
+  <thead>
+    <tr>
+      <h1>Clientes registrados</h1>
+      <th scope="col">Id:</th>
+      <th scope="col">Nombre:</th>
+      <th scope="col">Apellido paterno:</th>
+      <th scope="col">Apellido materno:</th>
+      <th scope="col">RFC:</th>
+      <th scope="col">Calle:</th>
+      <th scope="col">Num. Int:</th>
+      <th scope="col">Num. Ext:</th>
+      <th scope="col">Colonia:</th>
+      <th scope="col">Código Postal:</th>
+      <th scope="col">Delegación:</th>
+      <th scope="col">Ciudad:</th>
+      <th scope="col">Estado:</th>
+      <th scope="col">Teléfono:</th>
+      <th scope="col">Correo:</th>
+    </tr>
+  </thead>
+  <tbody>
+    {%for cli in listaClientes %}
+    <tr>
+    <td>{{ cli.0 }}</td>
+    <td>{{ cli.1 }}</td>
+    <td>{{ cli.2 }}</td>
+    <td>{{ cli.3 }}</td>
+    <td>{{ cli.4 }}</td>
+    <td>{{ cli.5 }}</td>
+    <td>{{ cli.6 }}</td>
+    <td>{{ cli.7 }}</td>
+    <td>{{ cli.8 }}</td>
+    <td>{{ cli.9 }}</td>
+    <td>{{ cli.10 }}</td>
+    <td>{{ cli.11 }}</td>
+    <td>{{ cli.12 }}</td>
+    <td>{{ cli.13 }}</td>
+    <td>{{ cli.14 }}</td>
+    <td>
+      <a href="/vactualizarC/{{ cli.0 }}" class="btn btn-secondary">Editar</a>
+      <a href="/veliminarC/{{ cli.0 }}" class="btn btn-secondary">Eliminar</a>
+    </td>
+    </tr>
+    
+    {%endfor %}
+    
+  </tbody>
 </table>
-</center>
+
+
 
 </body>
 </html>

@@ -3,58 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Consulta usuarios</title>
 </head>
-<body>
+  <body class="p-3 mb-2 bg-dark text-white">
     <div class="menu">
-        <a href="{{ url_for('HolaU') }}"><button type="button"> Página de inicio </button></a>
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a  class="nav-link active" aria-current="page" href="{{ url_for('HolaU') }}"> Página de inicio</a>
+        </li>
+        </ul>
+      </div>
 
-    </div>
     {%with mensajes=get_flashed_messages()%}
     {% if mensajes%}
       {%for msj in mensajes%}
-      <h3> {{msj}} </h3>
+      <script>Swal.fire(
+        'Good job!',
+        '{{ msj }}  ',
+        'success')
+      </script>
       {%endfor%}
     {%endif%}
   {%endwith%}
-<br>
-<br>
-<center>
-<h1>Usuarios registrados</h1>
-<br>
-<table>
-<thead>
-<tr>
-<td>Id:</td>
-<td>Nombre:</td>
-<td>Apellido paterno:</td>
-<td>Apellido materno:</td>
-<td>Cargo:</td>
-<td>Constraseña:</td>
-</tr>
-</thead>
 
-<tbody> 
-{%for usu in listaUsuarios %}
-<tr>
-<td>{{ usu.0 }}</td>
-<td>{{ usu.1 }}</td>
-<td>{{ usu.2 }}</td>
-<td>{{ usu.3 }}</td>
-<td>{{ usu.4 }}</td>
-<td>{{ usu.5 }}</td>
+  <h1>Usuarios registrados</h1>
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Id:</th>
+        <th scope="col">Nombre:</th>
+        <th scope="col">Apellido Paterno:</th>
+        <th scope="col">Apellido Materno:</th>
+        <th scope="col">Cargo:</th>
+        <th scope="col">Contraseña:</th>
+  
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          {%for usu in listaUsuarios %}
+        <td>{{ usu.0 }}</td>
+        <td>{{ usu.1 }}</td>
+        <td>{{ usu.2 }}</td>
+        <td>{{ usu.3 }}</td>
+        <td>{{ usu.4 }}</td>
+        <td>{{ usu.5 }}</td>
+        <td>
+          <a href="/vactualizar/{{ usu.0 }}" class="btn btn-secondary" >Editar</a>
+          <a href="/veliminar/{{ usu.0 }}" class="btn btn-secondary" >Eliminar</a>
+        </td>
+        </tr>
+        
+        {%endfor %}
 
-<td>
-  <a href="/vactualizar/{{ usu.0 }}">Editar</a>
-  <a href="/veliminar/{{ usu.0 }}">Eliminar</a>
-</td>
-</tr>
-
-{%endfor %}
-</tbody>
-</table>
-</center>
 
 </body>
 </html>

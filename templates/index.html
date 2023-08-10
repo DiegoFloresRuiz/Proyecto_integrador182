@@ -4,38 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <title>Notaria</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='Index.css') }}">
+    
     
 </head>
-<body>
+<body class="p-3 mb-2 bg-dark text-white">
     <br>
     <br>
-    <center>
-    <h1>Bienvenido a Warenote</h1>
-    
-</center>
-    <form action="/ingresar" method="POST"> 
-        <div class="Formulario">
-
-            <h1> Bienvenido</h1>
-            <h1> Iniciar sesión </h1>
-            <form method="post">
-                <div class="username">
-                    <input type="text" name="nombre" placeholder="Usuario" required>
+    <h1 class="fs-2 text-center" >Bienvenido a Warenote</h1>
+    <h1 class="fs-2 text-center">Inicia sesión</h1>
+    <div class="row">  
+    <div class="container d-flex justify-content-center align-items-center min-vh-50">
+        <div class="col-md-4">  
+            <div class="card border-white mb-8" style="background-color: transparent;">
+                <div class="card-body text-white">
+                <form action="/ingresar" method="POST">
                     
-                </div>
-                <div class="username">
-                    <input type="password" name="password" placeholder="Constraseña" required>
-                
-                </div> 
-                <div>
-                <button type="submit"> Iniciar </button>
-                <button type="reset"> Cancelar  </button>
+                    <div class="mb-3">
+                        <label class="form-label"> Usuario</label>
+                        <input type="text" class="form-control" name="Usuario" placeholder="Usuario" required>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" name="password" placeholder="Contraseña" required>
+                      </div>
+                      <div class="d-grid gap-2">
+                      <button type="submit" class="btn btn-secondary mt-2">Iniciar</button>
+                      </div>
+                </form>
             </div>
-                <br>
-            </form>
-        </div>  
-    </form>
+        </div>
+    </div>
+    </div>
 </body>
 </html>
