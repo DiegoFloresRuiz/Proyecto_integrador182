@@ -11,17 +11,19 @@
 </head>
 <body class="p-3 mb-2 bg-dark text-white">
 
-       {%with mensajes=get_flashed_messages()%}
-      {%if mensajes%}
-        {%for msj in mensajes%}
-          <script>Swal.fire(
-            'Good job!',
-            '{{ msj }}  ',
-            'success')
-          </script>
-        {%endfor%}
-      {%endif%}
-    {%endwith%}
+  {%with mensajes=get_flashed_messages()%}
+  {% if mensajes%}
+    {%for msj in mensajes%}
+   
+    
+     {{msj}}
+      
+
+    <script>Swal.fire( 'Se ha agregado el registro correctamente')</script>
+          {%endfor%}
+  {%endif%}
+{%endwith%}
+
   
     <div class="container d-flex justify-content-center align-items-center min-vh-100">  
       <div class="card border-white mb-8" style="background-color: transparent;">

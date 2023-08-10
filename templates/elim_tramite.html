@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+ 
+    <title>Eliminar trámite</title>
+</head>
+<body class="p-3 mb-2 bg-dark text-white">
+    <div class="d-grid gap-2">
+        <div class="container d-flex justify-content-center align-items-center min-vh-100">
+            <div class="card border-white mb-8" style="background-color: transparent;">
+                <div class="card-body text-white">
+                    <form action="/eliminarT_a/{{tramites.0}}" method="POST">
+                        <h1>Eliminar trámite</h1>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <input class="form-control form-control-lg" type="text" name="num_exp" value="{{tramites.1}}" placeholder="Número de expediente">
+                                </div>
+                                <div class="mb-3">
+                                    <input class="form-control form-control-lg" type="text" name="num_tomo" value="{{tramites.2}}" placeholder="Número de tomo">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <input class="form-control form-control-lg" type="text" name="operacion" value="{{tramites.3}}" placeholder="Operación">
+                                </div>
+                                
+                         
+                        <button type="submit" class="btn btn-secondary">Eliminar</button>
+                        <a href="/vinventarioTramites_a"><button type="button" class="btn btn-secondary">Cancelar</button></a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

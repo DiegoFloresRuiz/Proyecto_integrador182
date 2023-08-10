@@ -340,7 +340,7 @@ def eliminar(id):
     flash('Usuario eliminado correctamente')
     return redirect(url_for('cUsuarios'))
 
-
+#ruta que envía a tabla de consulta clientes usuario
 @app.route('/vcarteraClientes') 
 def cClientes():
     inv=mysql.connection.cursor()
@@ -348,8 +348,9 @@ def cClientes():
     mysql.connection.commit()
 
     consulta_inv=inv.fetchall() 
-    return render_template('consulta_clientes.html',listaClientes=consulta_inv)
+    return render_template('consulta_clientes_usuario.html',listaClientes=consulta_inv)
 
+#ruta que redirecciona a la vista "actualizar" cliente usuario
 @app.route('/vactualizarC/<id>') 
 def editarC(id):
     editar=mysql.connection.cursor()
@@ -357,6 +358,7 @@ def editarC(id):
     consulta=editar.fetchone() 
     return render_template('actualizar_cliente.html',clientes=consulta)
 
+#ruta que realiza la consulta de actualizar cliente usuario en la BD
 @app.route('/vactualizarCliente/<id>',methods=['POST']) 
 def actualizarCliente(id): 
    if request.method == 'POST':
@@ -433,6 +435,236 @@ def actualizarT(id):
        flash('Trámite actualizado correctamente')
        return redirect(url_for('inventarioT'))
    
+
+#ruta catálogo pagos administrador
+@app.route('/vinventarioPagos_a') 
+def invPagos_a():
+    inv=mysql.connection.cursor()
+    inv.execute('select * from ingresopago')
+    mysql.connection.commit()
+
+    consulta_inv=inv.fetchall() 
+    return render_template('consulta_pagos_admin.html',listaPagos=consulta_inv)
+
+#ruta para enviar a la vista de actualizar (desde en tabla de consulta)
+@app.route('/vactualizarP_a/<id>') 
+def vactualizarP_a(id):
+    editar=mysql.connection.cursor()
+    editar.execute('select * from ingresopago where id_pago = %s',(id,))
+    consulta=editar.fetchone() 
+    return render_template('actualizar_pago_admin.html',pagos=consulta)
+
+#ruta que realiza la acción de actualizar pago admin
+@app.route('/actualizarP_a/<id>',methods=['POST']) 
+def actualizar_p_a(id): 
+   if request.method == 'POST':
+       _cantidad=request.form['cantidad']
+       _tipopago=request.form['tipo_pago']
+       _fecha=request.form['fecha']
+       
+
+       curAct=mysql.connection.cursor()
+       curAct.execute('update ingresopago set cantidad=%s, tipo_pago=%s, fecha=%s where id_pago = %s', (_cantidad,_tipopago,_fecha,id))
+       mysql.connection.commit()
+
+       flash('Datos del pago actualizados correctamente')
+       return redirect(url_for('invPagos_a'))
+
+#ruta catálogo pagos usuario
+@app.route('/vinventarioPagos_u') 
+def invPagos_u():
+    inv=mysql.connection.cursor()
+    inv.execute('select * from ingresopago')
+    mysql.connection.commit()
+
+    consulta_inv=inv.fetchall() 
+    return render_template('consulta_pagos_usuarios.html',listaPagos=consulta_inv)
+
+#ruta para enviar a la vista de actualizar pago usuario (desde en tabla de consulta)
+@app.route('/vactualizarP_u/<id>') 
+def vactualizarP_u(id):
+    editar=mysql.connection.cursor()
+    editar.execute('select * from ingresopago where id_pago = %s',(id,))
+    consulta=editar.fetchone() 
+    return render_template('actualizar_pago_usuario.html',pagos=consulta)
+
+#ruta que realiza la acción de actualizar pago admin
+@app.route('/actualizarP_u/<id>',methods=['POST']) 
+def actualizar_p_u(id): 
+   if request.method == 'POST':
+       _cantidad=request.form['cantidad']
+       _tipopago=request.form['tipo_pago']
+       _fecha=request.form['fecha']
+       
+
+       curAct=mysql.connection.cursor()
+       curAct.execute('update ingresopago set cantidad=%s, tipo_pago=%s, fecha=%s where id_pago = %s', (_cantidad,_tipopago,_fecha,id))
+       mysql.connection.commit()
+
+       flash('Datos del pago actualizados correctamente')
+       return redirect(url_for('invPagos_u'))
+
+#ruta que direcciona a la vista eliminar pago admin desde la tabla
+@app.route('/veliminarP_a/<id>') 
+def veliminarP_a(id):
+    eliminar=mysql.connection.cursor()
+    eliminar.execute('select * from ingresopago where id_pago = %s',(id,))
+    consulta=eliminar.fetchone()
+ 
+    return render_template('eliminar_pago_admin.html',pagos=consulta)
+
+#ruta que realiza la función de eliminar pago admin en BD
+@app.route('/eliminarP_a/<id>',methods=['POST']) 
+def eliminarP_a(id):
+    if request.method=='POST':
+      eliminar=mysql.connection.cursor()
+      eliminar.execute('delete from ingresopago where id_pago = %s',(id,))
+      mysql.connection.commit()
+
+    
+    flash('Pago eliminado correctamente')
+    return redirect(url_for('invPagos_a'))
+
+#ruta que direcciona a la vista eliminar pago usuario desde la tabla
+@app.route('/veliminarP_u/<id>') 
+def veliminarP_u(id):
+    eliminar=mysql.connection.cursor()
+    eliminar.execute('select * from ingresopago where id_pago = %s',(id,))
+    consulta=eliminar.fetchone()
+ 
+    return render_template('eliminar_pago_usuario.html',pagos=consulta)
+
+#ruta que realiza la función de eliminar pago usuario en BD
+@app.route('/eliminarP_u/<id>',methods=['POST']) 
+def eliminarP_u(id):
+    if request.method=='POST':
+      eliminar=mysql.connection.cursor()
+      eliminar.execute('delete from ingresopago where id_pago = %s',(id,))
+      mysql.connection.commit()
+
+    
+    flash('Pago eliminado correctamente')
+    return redirect(url_for('invPagos_u'))
+
+    #ruta que envía a tabla de consulta clientes admin
+@app.route('/vcarteraClientes_a') 
+def cClientes_a():
+    inv=mysql.connection.cursor()
+    inv.execute('select * from registro_cliente')
+    mysql.connection.commit()
+
+    consulta_inv=inv.fetchall() 
+    return render_template('consulta_clientes_admin.html',listaClientes=consulta_inv)
+
+#ruta que redirecciona a la vista "actualizar" cliente admin
+@app.route('/vactualizarC_a/<id>') 
+def vactualizarC_a(id):
+    editar=mysql.connection.cursor()
+    editar.execute('select * from registro_cliente where id_cliente = %s',(id,))
+    consulta=editar.fetchone() 
+    return render_template('actualizar_cliente_admin.html',clientes=consulta)
+
+#ruta que realiza la consulta de actualizar cliente admin en la BD
+@app.route('/actualizarCliente_a/<id>',methods=['POST']) 
+def actualizarCliente_a(id): 
+   if request.method == 'POST':
+       _nombre=request.form['nombre']
+       _AP=request.form['ApellidoP']
+       _AM=request.form['ApellidoM']
+       _rfc=request.form['RFC']
+       _calle=request.form['Calle']
+       _numint=request.form['numint']
+       _numext=request.form['numext']
+       _colonia=request.form['colonia']
+       _cp=request.form['cp']
+       _del=request.form['delegacion']
+       _ciudad=request.form['ciudad']
+       _estado=request.form['estado']
+       _tel=request.form['telefono']
+       _correo=request.form['correo']
+
+       curAct=mysql.connection.cursor()
+       curAct.execute('update registro_cliente set nombre=%s, apellido_paterno=%s, apellido_materno=%s, rfc=%s, calle=%s, num_int=%s, num_ext=%s,colonia=%s,codigo_postal=%s,delegacion=%s,ciudad=%s,estado=%s,telefono=%s,correo=%s where id_cliente = %s', (_nombre,_AP,_AM,_rfc,_calle,_numint,_numext,_colonia,_cp,_del,_ciudad,_estado,_tel,_correo,id))
+       mysql.connection.commit()
+
+       flash('Datos del cliente actualizados correctamente')
+       return redirect(url_for('cClientes_a'))
+
+#ruta que dirige a la vista de eliminar cliente admin desde la tabla de consulta   
+@app.route('/veliminarC_a/<id>') 
+def eliminarC_a(id):
+    eliminar=mysql.connection.cursor()
+    eliminar.execute('select * from registro_cliente where id_cliente = %s',(id,))
+    consulta=eliminar.fetchone()
+ 
+    return render_template('elim_cliente_admin.html',clientes=consulta)
+
+#ruta que realiza la consulta en la BD para eliminar cliente admin
+@app.route('/eliminarCliente_a/<id>',methods=['POST']) 
+def eliminarCliente_a(id):
+    if request.method=='POST':
+      eliminar=mysql.connection.cursor()
+      eliminar.execute('delete from registro_cliente where id_cliente = %s',(id,))
+      mysql.connection.commit()
+
+    
+    flash('Cliente eliminado correctamente')
+    return redirect(url_for('cClientes_a'))
+
+#ruta que dirige a la tabla de consulta de trámites admin
+@app.route('/vinventarioTramites_a') 
+def inventarioT_a():
+    inv=mysql.connection.cursor()
+    inv.execute('select * from inicio_tramite')
+    mysql.connection.commit()
+
+    consulta_inv=inv.fetchall() 
+    return render_template('consulta_tramites_admin.html',listaTramites=consulta_inv)
+
+#ruta que dirige a la vista de actualizar trámite desde la tabla
+@app.route('/vactualizarT_a/<id>') 
+def editarT_a(id):
+    editar=mysql.connection.cursor()
+    editar.execute('select * from inicio_tramite where id_tramite = %s',(id,))
+    consulta=editar.fetchone() 
+    return render_template('actualizar_tramite_admin.html',tramites=consulta)
+
+#ruta que realiza la consulta en la BD para actualizar trámite admin
+@app.route('/actualizarTram_a/<id>',methods=['POST']) 
+def actualizarT_a(id): 
+   if request.method == 'POST':
+       _num_exp=request.form['num_exp']
+       _num_tomo=request.form['num_tomo']
+       _operacion=request.form['operacion']
+
+       curAct=mysql.connection.cursor()
+       curAct.execute('update inicio_tramite set num_expediente=%s, num_tomo=%s, operacion=%s where id_tramite = %s', (_num_exp,_num_tomo,_operacion,id))
+       mysql.connection.commit()
+
+       flash('Trámite actualizado correctamente')
+       return redirect(url_for('inventarioT_a'))
+
+#ruta que dirige a la vista de eliminar trámite admin desde la tabla
+@app.route('/veliminarT_a/<id>') 
+def veliminarT_a(id):
+    eliminar=mysql.connection.cursor()
+    eliminar.execute('select * from inicio_tramite where id_tramite = %s',(id,))
+    consulta=eliminar.fetchone()
+ 
+    return render_template('elim_tramite.html',tramites=consulta)
+
+#ruta que realiza la consulta en la BD para eliminar un trámite admin
+@app.route('/eliminarT_a/<id>',methods=['POST']) 
+def eliminarT_a(id):
+    if request.method=='POST':
+      eliminar=mysql.connection.cursor()
+      eliminar.execute('delete from inicio_tramite where id_tramite = %s',(id,))
+      mysql.connection.commit()
+
+    
+    flash('Trámite eliminado correctamente')
+    return redirect(url_for('inventarioT_a'))
+
 
 if __name__=='__main__':
     app.run(port= 9000, debug=True) #debug=true activaactualizacion 

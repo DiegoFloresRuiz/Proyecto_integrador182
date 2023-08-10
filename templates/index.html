@@ -33,6 +33,16 @@
                       <div class="d-grid gap-2">
                       <button type="submit" class="btn btn-secondary mt-2">Iniciar</button>
                       </div>
+                      {%with mensajes=get_flashed_messages()%}
+      {%if mensajes%}
+        {%for msj in mensajes%}
+          <script>Swal.fire(
+            'Inicio de sesión exitoso',
+            '{{ msj }}  ')
+          </script>
+        {%endfor%}
+      {%endif%}
+    {%endwith%}
                 </form>
             </div>
         </div>

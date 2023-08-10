@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <title>Actualizar datos pago</title>
+</head>
+<body>
+    <h1 class="text-center"> Actualizar datos de pago </h1>
+
+    <body class="p-3 mb-2 bg-dark text-white">
+        <div class="container d-flex justify-content-center align-items-center min-vh-50">
+            <div class="card border-white mb-8" style="background-color: transparent;">
+                <div class="card-body text-white">
+                    <div class="row">
+               
+            <form action="/actualizarP_u/{{pagos.0}}" method="POST">
+                <div class="mb-3">
+                <input  class="form-control form-control-lg" aria-label=".form-control-lg example" type="number" name="cantidad" value="{{pagos.1}}" step="any">    
+                </div>
+                <div class="mb-3">
+                    <input  class="form-control form-control-lg" aria-label=".form-control-lg example" type="text" name="tipo_pago" value="{{pagos.2}}">  
+                </div>
+                <div class="mb-3">
+                    <input  class="form-control form-control-lg" aria-label=".form-control-lg example" type="date" name="fecha" value="{{pagos.3}}">   
+                </div>
+                
+           
+                        </div>
+             
+              
+                <button type="submit" class="btn btn-secondary"> Editar </button>
+                <a href=/vinventarioPagos_a><button type="button" class="btn btn-secondary"> Cancelar </button></a>
+            </form>
+        </div>
+                    </div>
+</body>
+</html>
